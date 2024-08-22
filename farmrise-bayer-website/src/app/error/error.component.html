@@ -1,0 +1,18 @@
+<div class="error-container-{{detectedDevice}}" >
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap" rel="stylesheet">
+    <div class="error-img-{{detectedDevice}}">
+        <img src="../../assets/ic_error_response_img.svg" alt="">
+    </div>
+    <div class="error-response-{{detectedDevice}}">
+        <div class="error-header-{{detectedDevice}}">{{'translateStrings.we_lost_that_page' | translate}}</div>
+        <div class="error-description-{{detectedDevice}}">{{'translateStrings.error_page_description' | translate}}</div>
+        <div class="back-btns-{{detectedDevice}}">
+            <div class="take-me-home-{{detectedDevice}}">
+                <button routerLink="">{{'translateStrings.take_me_home' | translate}}</button>
+            </div>
+            <div class="go-back" (click)="goBack()">
+                {{'translateStrings.go_back' | translate}}
+            </div>
+        </div>
+    </div>
+</div>

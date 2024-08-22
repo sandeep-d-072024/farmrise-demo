@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="Close" transform="translate(-959 -1517)">
+    <rect id="Boundary" width="24" height="24" transform="translate(959 1517)" fill="none"/>
+    <g id="Close-2" data-name="Close" transform="translate(963 1521)">
+      <path id="Path_83032" data-name="Path 83032" d="M15.645.355h0a1.211,1.211,0,0,0-1.712,0L8,6.288,2.067.355A1.211,1.211,0,0,0,.355,2.067L6.287,8,.355,13.934a1.211,1.211,0,1,0,1.712,1.712L8,9.713l5.932,5.933a1.211,1.211,0,0,0,1.712-1.712L9.713,8l5.932-5.933a1.211,1.211,0,0,0,0-1.712" transform="translate(0 0)" fill="#999"/>
+    </g>
+  </g>
+</svg>

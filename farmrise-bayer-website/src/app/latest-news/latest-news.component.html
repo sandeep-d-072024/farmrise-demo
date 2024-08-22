@@ -1,0 +1,21 @@
+<section class="news-container" style="margin: 0 6%;">
+    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+        <p style="color: white;">Please Wait..</p>
+    </ngx-spinner>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap" rel="stylesheet">
+    <div class="news-container-header-{{detectedDevice}}">
+        <p>{{ 'translateStrings.latest_news' | translate }}</p>
+    </div>
+    <div class="news-card-container-{{detectedDevice}}">
+        <div *ngFor="let news of newsList" class="news-card-{{detectedDevice}}">
+            <div class="news-card-img-{{detectedDevice}}"><img src="{{news.url}}" alt=""></div>
+            <div class="news-card-title-{{detectedDevice}}">{{news.heading}}</div>
+            <div class="read-more-{{detectedDevice}}" (click)="downloadApp()"><span style="cursor:pointer">{{
+                    'translateStrings.read_more' | translate }} &rarr;</span></div>
+        </div>
+    </div>
+</section>
+<!----------  download app card  ---------->
+<app-app-download></app-app-download>
+<!-----------------  end  ------------------>
+<app-footer></app-footer>

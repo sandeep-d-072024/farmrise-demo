@@ -1,0 +1,33 @@
+<section class="app-download-container" [ngStyle]="{'display': closeBottomSheet? 'none': 'block'}" aria-label="app-download">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap" rel="stylesheet">
+    <c-carousel [interval]="2000" transition="slide">
+        <c-carousel-inner>
+            <c-carousel-item *ngFor="let banner of bottomSheetCarouselContents">
+                <div style="max-height: 450px;" [ngStyle]="{'background-color': banner.backgroundColor}">
+                    <img src="{{banner.img}}" [style]="banner.style" alt=""/>
+                    <div class="img" (click)="closeDownloadBottomSheet()"><img src="assets/ic_close.svg" class="close-icon" />
+                    </div>
+                    <div class="download-text"><b>{{ 'translateStrings.download_the_farmrise_app' | translate }}</b></div>
+                    <p class="download-info"><b>{{ 'translateStrings.'+banner.description| translate }}</b></p>
+                </div>
+            </c-carousel-item>
+        </c-carousel-inner>
+    </c-carousel>
+
+    <div style="margin-top: -5px;">
+        <img src="assets/bg_app_download.png" style="position:relative; width:100%;
+                background-repeat: no-repeat;
+                min-height: 250px;
+                background-size: 100%;" />
+        <div class="other-free-features">
+            <img src="assets/img_stars.svg">
+            <span class="labelText">{{ 'translateStrings.other_free_features' | translate }}</span>
+            <img src="assets/img_stars.svg">
+        </div>
+        <div [style.--spin-language]="selectedLanguage" class="features"></div>
+        <div class="button-download" (click)="downloadApp()">{{ 'translateStrings.download_the_app_now' | translate }}
+        </div>
+    </div>
+</section>

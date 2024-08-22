@@ -1,0 +1,173 @@
+.crop-nav {
+    display: flex;
+    padding: 2% 6% 0;
+    border-top: solid lightgray;
+    border-bottom: solid lightgray;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+}
+
+.corn-tab {
+    padding: 2% 8%;
+}
+
+.corn-nav-active {
+    color: #00B800;
+    border-bottom: solid #00B800;
+    font-weight: bolder;
+}
+
+a {
+    flex: 33%;
+    display: block;
+    width: fit-content;
+}
+
+
+.back-arrow {
+    width: 16px;
+    height: 16px;
+    padding-top: 33%
+}
+
+.crop-list {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.crop-row {
+    margin: 8% 6%;
+    padding-bottom: 4%;
+    height: 54px;
+    border-bottom: 1px solid lightgrey;
+}
+
+.crop-row-price-trend {
+    margin: -5% 6%;
+    height: 15%;
+    border-bottom: 1px solid lightgrey;
+}
+
+.market-col {
+    float: left;
+    width: 60%;
+    text-align: left;
+}
+
+.market-col span {
+    display: block;
+    margin: 2px;
+}
+
+.market-name {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.market-distance {
+    font-size: 13px;
+    color: #666666;
+}
+
+.price-trend {
+    color: #C53E00;
+    font-size: 12px;
+}
+
+.pricing-col {
+    float: left;
+    width: 40%;
+    text-align: right;
+}
+
+.pricing-col span {
+    display: flex;
+    margin: 2px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.pricing-info {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.pricing-col span img {
+    width: 8vw;
+    height: 5vw;
+}
+
+.update-info {
+    font-size: 13px;
+    color: #666666;
+}
+
+/* whatsapp card styling */
+.whatsAppCard {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 20px;
+    padding-bottom: 36px;
+    margin-bottom: 8px;
+    background: #0F172A;
+}
+
+.whatsAppCard .section-one {
+    display: flex;
+}
+
+.whatsAppCard .content {
+    width: 80%;
+    position: relative;
+}
+
+.whatsAppCard input {
+    width: 100%;
+    padding: 16px;
+    border-radius: 3px;
+    border: none
+}
+
+.whatsAppCard .title {
+    font-size: 16px;
+    font-weight: bolder;
+    color: white;
+}
+
+.whatsAppCard .description {
+    font-size: 14px;
+    color: white;
+    display: absolute;
+    margin-top: 6px;
+}
+
+.whatsAppCard .phoneNumber {
+    display: flex;
+    border-radius: 4px;
+    line-height: 2;
+    flex-direction: column;
+    padding: 2% 10% 0 0;
+}
+
+.whatsAppCard .textBox {
+    display: absolute;
+    margin-top: 28px;
+    color: white;
+    font-size: 14px;
+    border-radius: 4px;
+    background: #0F172A;
+    box-sizing: border-box;
+}
+
+.thankyou {
+    background-color: #E0FFEE;
+    padding: 1vw 4vw;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.thankyou p {
+    width: 78vw;
+}

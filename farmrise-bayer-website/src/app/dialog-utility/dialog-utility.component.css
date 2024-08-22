@@ -1,0 +1,34 @@
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #333333e3;
+    transition: all 0.5 linear;
+    z-index: 9999;
+}
+
+.lang-sel-popup {
+    top: 45px;
+    left: 42px;
+    width: 93%;
+    height: 88%;
+    display: block;
+    position: fixed;
+    accent-color: green;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 24px 24px #0000004D;
+    border: 0.5px solid #E3E6E9;
+    border-radius: 6px;
+    opacity: 1;
+    z-index: 9999;
+    overflow: scroll;
+    @media screen and (max-width: 516px) {
+        left: 15px;
+    }
+}
+
+.close_btn{
+    float: right;
+}

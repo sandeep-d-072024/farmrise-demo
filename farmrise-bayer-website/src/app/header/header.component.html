@@ -1,0 +1,46 @@
+<section>
+    <div class="header" *ngIf="desktopView">
+        <img class="bayerDesktopLogo" src="assets/ic_logo.webp" alt="logo" routerLink="" loading="lazy">
+        <div class="flex-right">
+            <div class="home">
+                <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap" rel="stylesheet">
+                <a href="" style="text-decoration: none; color: inherit;" routerLink="">{{'translateStrings.home' | translate}}</a>
+            </div>
+            <div class="careers button" (click)="openCareersPage()">
+                {{'translateStrings.careers' | translate}}
+            </div>
+            <div *ngIf="selectedLanguageName!=''" class="languageSelection" (click)="showLanguageSelectionPopup()">
+                <img src="../../assets/ic_translate.svg" alt="" width="30" height="30" loading="lazy">
+                <span class="selectedLanguage">{{ selectedLanguageName }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="bayerMobileLogo" *ngIf="mobileView">
+        <img  src="assets/ic_logo.webp" alt="logo" routerLink="" loading="lazy" width="200" height="auto">
+        <div class="languageSelectionForMobile" (click)="showLanguageSelectionPopup()">
+            <img src="../../assets/ic_translate.svg" alt="" loading="lazy">
+            <span class="selectedLanguage">{{ selectedLanguageISO | uppercase}}</span>
+        </div>
+        <div *ngIf="!mobileViewMenu" class="ham-menu-mobile" (click)="showMobileMenu()">
+            <img src="../../assets/ic_ham_menu.png" alt="" height="18px" width="24px" loading="lazy"> 
+        </div>
+        <div *ngIf="mobileViewMenu" class="mobile-menu-card">
+            <div class="menu-close" (click)="showMobileMenu()">
+                <img src="../../assets/ic_close.png" alt="" height="24px" loading="lazy">
+            </div>
+            <div class="menu-items">
+                <span class="menu-item-active"><a href="" style="text-decoration: none; color: inherit;"
+                        (click)="showMobileMenu()" routerLink="">{{ 'translateStrings.home' | translate }}</a></span>
+                <span class="menu-items-others"><a href="" style="text-decoration: none; color: inherit;"
+                        (click)="showMobileMenu()" routerLink="about-us">{{ 'translateStrings.about_us' | translate }}</a></span>
+                <span class="menu-items-others"><a href="" style="text-decoration: none; color: inherit;"
+                        (click)="showMobileMenu()" routerLink="news">{{ 'translateStrings.news_media' | translate }}</a></span>
+                <span class="menu-items-others"><a (click)="openCareersPage()"
+                        style="text-decoration: none; color: inherit;">{{ 'translateStrings.careers' | translate }}</a></span>
+            </div>
+        </div>
+    </div>
+    <div class="dividerLine">
+        <hr>
+    </div>
+</section>

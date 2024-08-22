@@ -1,0 +1,65 @@
+<section class="main-container">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap" rel="stylesheet">
+    <div class="crop-nav">
+        <a routerLink=""><img src="../../assets/back-arrow-navigation-svgrepo-com.svg" alt="" class="back-arrow"></a>
+        <a *ngFor="let crop of topCrops" class="corn-tab" [ngClass]="{'corn-nav-active': selectedCrop === crop}" (click)="showSelectedCropMarkets(crop)">{{crop | uppercase}}</a>
+    </div>
+
+    <div class="crop-list">
+        <div *ngFor="let market of commodityPriceMarketBoList[selectedCropIndex].commodityPriceMarketBoList"
+            class="crop-row">
+            <div class="market-col">
+                <!-- to be added price trend indicator -->
+                 <span *ngIf="market.priceTrend!==''" class="price-trend"><img src="../../assets/icon_price_trend.svg"
+                        alt="">{{market.priceTrend}}</span>
+                <span class="market-name">{{market.marketName}}</span>
+                <span class="market-distance">{{market.distance | number: '1.0-0'}} KM</span>
+            </div>
+            <div class="pricing-col">
+                <span class="pricing-info">
+                    ₹{{market.minPrice}}
+                    <img *ngIf="market.minPriceTrend === '+'" src="../../assets/ic_up_arrow.png" alt="&uparrow;"
+                                    style="height: 10px; width: 14px;">
+                    <img *ngIf="market.minPriceTrend === '-'" src="../../assets/ic_down_arrow.png" alt="&downarrow;"
+                        style="height: 10px; width: 14px;">
+                    - ₹{{market.maxPrice}}
+                    <img *ngIf="market.maxPriceTrend === '+'" src="../../assets/ic_up_arrow.png" alt="&uparrow;"
+                        style="height: 10px; width: 14px;">
+                    <img *ngIf="market.maxPriceTrend === '-'" src="../../assets/ic_down_arrow.png" alt="&downarrow;"
+                        style="height: 10px; width: 14px;">
+                </span>
+                <span class="update-info"><img *ngIf="getDate(market.date) === getDate('')"
+                        src="../../assets/Icon_Fresh.svg" alt=""> {{getDate(market.date) === getDate('') ? 'Today':
+                    market.date | monthDayFormat}} • {{market.quantity}} {{market.auctionUnitEnum}}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="showWhatsAppCard" class="whatsAppCard">
+        <div class="section-one">
+            <div class="content">
+                <div class="title">{{'translateStrings.want_to_see_more_crops' | translate}}</div>
+                <div class="description">
+                    {{'translateStrings.search_for_preferred_crops' | translate}}
+                </div>
+            </div>
+            <div class="image">
+                <img style="width:72px; height:72px" src="../../assets/ic_whatsapp.webp" alt="">
+            </div>
+        </div>
+        <div class="phoneNumber">
+            <input placeholder="{{'translateStrings.enter_whatsapp_number' | translate}}" [(ngModel)]="userPhoneNumber" type="tel" pattern="[789][0-9]{9}" max="10"
+                (keydown.enter)="subscribeWhatsapp()">
+                <span *ngIf="isPhoneNumberInvalid" style="color: #E33E45; font-size: 14px;">{{'translateStrings.enter_10digit_phonenumber' | translate}}</span>
+        </div>
+    </div>
+
+    <div *ngIf="!showWhatsAppCard && !closeWhatsAppResponseCard" class="thankyou">
+        <img src="../../assets/ic_close_grey.svg" alt="" style="position: absolute; margin-left: 86vw; margin-top: 3vw" (click)="closeWhatsAppResponse()">
+        <p style="font-size: 16px;">{{'translateStrings.thank_you' | translate}}</p>
+        <p style="font-size: 14px;">{{'translateStrings.thank_you_get_insights' | translate}}</p>
+    </div>
+    <div style="height: 90px; background-color: #fff;"></div>
+</section>
+<app-app-download-banner *ngIf="detectedDevice === 'mobile'"></app-app-download-banner>

@@ -1,0 +1,124 @@
+p {
+    margin: 0;
+    padding: 0;
+  }
+
+/* mobile */
+@media only screen and (min-width: 0) and (max-width: 512px) {
+
+    .footer {
+        padding: 16px;
+        background-color: white;
+    }
+
+    .trust-in-us {
+        color: #333333;
+        font-weight: bolder;
+        font-size: 20px;
+    }
+
+    .text-gray-14 {
+        font-size: 14px;
+        color: #707070;
+        margin-top: 20px;
+        font-weight: lighter;
+    }
+
+    .copy-right {
+        font-size: 16px;
+        color: #707070;
+        margin-top: 32px;
+    }
+
+    .privacy-policy-t-and-c {
+        margin-left: 16px;
+        margin-right: 16px;
+        margin-bottom: 32px;
+        margin-top: 8px;
+        color: #00B257;
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 16px;
+    }
+
+    .privacy-policy-t-and-c .privacy-policy {
+        color: #00B257;
+        width: 40%;
+    }
+
+    .privacy-policy-t-and-c .t-and-c {
+        color: #00B257;
+        width: 60%;
+    }
+}
+
+/* desktop */
+@media only screen and (min-width: 512px) {
+
+    .footer {
+        padding-left: 152px;
+        padding-right: 152px;
+        padding-top: 35px;
+        padding-bottom: 58px;
+        background-color: white;
+    }
+
+    .row {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 42px;
+    }
+
+    .row .columOne {
+        width: 50%;
+        flex-grow: 1;
+        display: flex;
+    }
+
+    .row .columTwo {
+        width: 50%;
+        flex-grow: 1;
+        display: flex;
+    }
+
+    .trust-in-us {
+        color: #333333;
+        font-weight: bolder;
+        font-size: 30px;
+    }
+
+    .text-gray-18 {
+        font-size: 14px;
+        color: #707070;
+        margin-top: 20px;
+    }
+
+    .text-bold-20 {
+        font-size: 20px;
+        color: #333333;
+        font-weight: bolder;
+    }
+
+    .copy-right {
+        font-size: 16px;
+        color: #707070;
+        margin-top: 35px;
+    }
+
+    .privacy-policy-t-and-c {
+        margin-top: 8px;
+        color: #00B257;
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 16px;
+    }
+
+    .privacy-policy-t-and-c .privacy-policy {
+        color: #00B257;
+    }
+
+    .privacy-policy-t-and-c .t-and-c {
+        margin-left: 64px;
+        color: #00B257; 
+    }
+}

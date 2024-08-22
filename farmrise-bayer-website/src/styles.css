@@ -1,0 +1,55 @@
+/* Global Styles */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 16px;
+    /* Base font size */
+}
+
+/* Body Style */
+
+body {
+    font-family: 'Noto Sans', Arial, sans-serif;
+    line-height: 1.6;
+
+}
+
+/* Responsive Text Class */
+.text-bold-16 {
+    font-size: 1rem;
+    /* Relative to the base font size (16px) */
+    font-weight: bolder;
+    color: #333333;
+}
+
+/* Responsive Adjustments for Smaller Devices */
+@media only screen and (max-width: 600px) {
+    .text-bold-16 {
+        font-size: 0.875rem;
+        /* Slightly smaller font size for small screens */
+    }
+}
+
+/* Responsive Adjustments for Larger Devices */
+@media only screen and (min-width: 1200px) {
+    .text-bold-16 {
+        font-size: 1.125rem;
+        /* Slightly larger font size for large screens */
+    }
+}
+
+@font-face {
+    font-family: 'YourFontName';
+    src: url('https://fonts.gstatic.com/v36/o-0mIpQlx....woff2') format('woff2');
+    font-display: swap;
+    /* or block, fallback */
+}
+
+.text-element {
+    line-height: 1.5;
+    /* Adjust line-height as needed */
+    font-size: 16px;
+    /* Set a base font size */
+}

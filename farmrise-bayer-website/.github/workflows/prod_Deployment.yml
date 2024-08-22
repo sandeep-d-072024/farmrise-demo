@@ -1,0 +1,107 @@
+# Compatible  Runner - Linux
+name: PROD Farmrise-website Deployment
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'version x.x.x'
+        required: true
+        default: 'x.x.x'
+
+jobs:
+  PROD_deployment:
+    environment: production
+    env:
+      roleId: ${{ secrets.ROLEID }}
+      secretId: ${{ secrets.SECRETID }}
+    name: PROD_deployment
+    runs-on: [self-hosted, linux, external-k8s]
+
+    steps:
+      - name: START
+        run: echo "start_time=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+
+      - name: Variable Assignment
+        env:
+          SRV_VERSION: ${{ github.event.inputs.version }}
+        run: |
+          echo "SRV_VERSION=${SRV_VERSION}" >> $GITHUB_ENV
+      - name: ServiceName Variable
+        run: |
+          echo "service_name=farmrise-website" >> $GITHUB_ENV
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+
+      # Jfrog installation plugin
+      - name: Setup jfrogcli
+        uses: jfrog/setup-jfrog-cli@v1
+
+      - name: Import Secrets
+        uses: hashicorp/vault-action@v2.4.0
+        with:
+          method: approle
+          roleId: ${{ env.roleId }}
+          secretId: ${{ env.secretId }}
+          url: https://vault.agro.services/
+          secrets: |
+            secret/apacdi-platform/cloudops/tools/jfrog username | JFROG_USERNAME ;
+            secret/apacdi-platform/cloudops/tools/jfrog secret | JFROG_SECRET ;
+            secret/apacdi-platform/aws-keys/farmrise-website AWS_ACCESS_KEY_ID | AWS_ACCESS_KEY_ID ;
+            secret/apacdi-platform/aws-keys/farmrise-website AWS_SECRET_ACCESS_KEY | AWS_SECRET_ACCESS_KEY ;
+
+      - name: Verify Service Version
+        run: curl -u $JFROG_USERNAME:$JFROG_SECRET -I https://artifactory.bayer.com/artifactory/farmrise-maven-prod-diengineering/backend-services/prod/${service_name}/${SRV_VERSION} -s | head -1 | awk {'print $2'} | grep 404
+
+      - name: Install npm
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20.13.1'
+
+      - name: build npm
+        run: |
+          npm config rm proxy
+          npm config rm https-proxy
+          npm install -d bootstrap --save
+          npm install -g @angular/cli
+          ng config -g cli.warnings.versionMismatch false
+          ng build --configuration=production
+      - name: zip file creation
+        run: |
+          which zip || sudo apt-get install zip -y
+          cd dist/
+          zip -r farmrise-website.zip farmrise-bayer-website/
+      - name: Upload Zip Package Prod
+        run: |
+          cd dist/
+          jfrog rt u   "farmrise-website.zip" farmrise-maven-prod-diengineering/backend-services/prod/${service_name}/${SRV_VERSION}/ --url=https://artifactory.bayer.com/artifactory --user=${JFROG_USERNAME} --password=${JFROG_SECRET}
+      - name: Upload zip to S3
+        env:
+          AWS_DEFAULT_REGION: ${{ secrets.DEFAULT_REGION }}
+        run: |
+          which aws || sudo apt-get install awscli -y
+          cd dist
+          aws s3 cp --recursive farmrise-bayer-website s3://farmrise-website-prod/
+      - name: Deployment
+        env:
+          AWS_DEFAULT_REGION: ${{ secrets.DEFAULT_REGION }}
+        run: |
+          aws cloudfront create-invalidation --distribution-id ER38WRQNYCCZ4 --paths "/*"
+      - name: Fetch Webhook URL
+        if: ${{ always() }}
+        env:
+          GH_WEBHOOK: ${{ secrets.Prod_Webhook }}
+        run: echo "GH_WEBHOOK=$GH_WEBHOOK" >> $GITHUB_ENV
+
+      - name: END
+        if: ${{ always() }}
+        run: echo "end_time=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV # noting time for teams notification
+
+      - name: notify teams Success Message
+        if: ${{ success() }}
+        run: |
+          curl -H 'Content-Type: application/json' -d '{ "@type": "MessageCard", "themeColor": "0076D7", "summary": "Github actions trigger", "sections": [{ "activityTitle": "'"Actions triggered - $GITHUB_WORKFLOW - $GITHUB_REPOSITORY - $ENV"'", "activitySubtitle": "Github actions", "facts": [{ "name": "Triggered By", "value": "'"$GITHUB_ACTOR"'" }, { "name": "Started", "value": "'"$start_time"'" }, { "name": "Version", "value": "'"$SRV_VERSION"'" }, { "name": "Ended", "value": "'"$end_time"'" }, { "name": "Status", "value": "Success" }], "markdown": true }], "potentialAction": [{ "@type": "OpenUri", "name": "Github Actions", "targets": [{ "os": "default", "uri": "'"https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"'" }] }] }' $GH_WEBHOOK
+      - name: notify teams Failure Message
+        if: ${{ failure() }}
+        run: |
+          curl -H 'Content-Type: application/json' -d '{ "@type": "MessageCard", "themeColor": "FF0000", "summary": "Github actions trigger", "sections": [{ "activityTitle": "'"Actions triggered - $GITHUB_WORKFLOW - $GITHUB_REPOSITORY - $ENV"'", "activitySubtitle": "Github actions", "facts": [{ "name": "Triggered By", "value": "'"$GITHUB_ACTOR"'" }, { "name": "Started", "value": "'"$start_time"'" }, { "name": "Version", "value": "'"$SRV_VERSION"'" }, { "name": "Ended", "value": "'"$end_time"'" }, { "name": "Status", "value": "Failure" }], "markdown": true }], "potentialAction": [{ "@type": "OpenUri", "name": "Github Actions", "targets": [{ "os": "default", "uri": "'"https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"'" }] }] }' $GH_WEBHOOK

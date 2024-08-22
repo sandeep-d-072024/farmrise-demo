@@ -1,0 +1,45 @@
+<section>
+    <div class="footer">
+        <div *ngIf="desktopView">
+            <div class="trust-in-us">{{'translateStrings.empowering_farmers_for_better_tomorrow' | translate}}</div>
+            <div class="row">
+                <div class="columnOne">
+                    <p class="text-bold-20">{{'translateStrings.company' | translate}}</p>
+                    <a href="" routerLink="/about-us" style="text-decoration: none; color: inherit;"><p class="text-gray-18">{{'translateStrings.about_us' | translate}}</p></a>
+                    <a href="" routerLink="/news" style="text-decoration: none; color: inherit;"><p class="text-gray-18">{{'translateStrings.news_media' | translate}}</p></a>
+                    <a href="" style="text-decoration: none; color: inherit;"><p class="text-gray-18" (click)="openCareersPage()">{{'translateStrings.careers' | translate}}</p></a>
+                </div>
+                <div class="columnTwo">
+                    <img style="width: 458px; height: 97px; margin-top: 20px;" src="assets/ic_logo.webp" alt="logo" loading="lazy" />
+                </div>
+            </div>
+            <p class="copy-right">{{'translateStrings.copyright_rights_reserved' | translate}}</p>
+            <div class="privacy-policy-t-and-c">
+                <span class="privacy-policy" (click)="showPrivacyPolicy()">
+                    <u>{{'translateStrings.privacy_policy' | translate}}</u>
+                </span>
+                <span class="t-and-c" (click)="showTermsAndConditions()">
+                    <u>{{'translateStrings.terms_and_conditions' | translate}}</u>
+                </span>
+            </div>
+        </div>
+        <div *ngIf="mobileView">
+            <div class="trust-in-us">{{'translateStrings.empowering_farmers_for_better_tomorrow' | translate}}</div>
+            <img style="margin-top: 39px; margin-bottom:
+                39px; width: 216px; height: 45px;" src="assets/ic_logo.webp" alt="logo" loading="lazy">
+                <p class="text-bold-16">{{'translateStrings.company' | translate}}</p>
+                <a href="" routerLink="/about-us" style="text-decoration: none; color: inherit;"><p class="text-gray-14">{{'translateStrings.about_us' | translate}}</p></a>
+                <a href="" routerLink="/news" style="text-decoration: none; color: inherit;"><p class="text-gray-14">{{'translateStrings.news_media' | translate}}</p></a>
+                <a href="" style="text-decoration: none; color: inherit;"><p class="text-gray-14" (click)="openCareersPage()">{{'translateStrings.careers' | translate}}</p></a>
+                <p class="copy-right">{{'translateStrings.copyright_rights_reserved' | translate}}</p>
+            <div class="privacy-policy-t-and-c">
+                <span class="privacy-policy" (click)="showPrivacyPolicy()">
+                    <u>{{'translateStrings.privacy_policy' | translate}}</u>
+                </span>
+                <span class="t-and-c" (click)="showTermsAndConditions()">
+                    <u>{{'translateStrings.terms_and_conditions' | translate}}</u>
+                </span>
+            </div>
+        </div>
+    </div>
+</section>

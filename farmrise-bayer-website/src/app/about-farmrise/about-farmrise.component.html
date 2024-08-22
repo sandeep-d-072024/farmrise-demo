@@ -1,0 +1,147 @@
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap" rel="stylesheet">
+<!-- Desktop view -->
+<section *ngIf="detectedDevice === 'desktop'" class="about-farmrise-container-desktop">
+    <div class="feature-side">
+        <div class="about-farmrise-header">
+            {{'translateStrings.about_farmrise' | translate}}
+        </div>
+        <div class="farmrise-features-container">
+            <div *ngFor="let feature of aboutFarmRiseFeaturesData" class="feature-block">
+                <div class="feature-name">{{'translateStrings.'+feature.featureName| translate}}:</div>
+                <div class="feature-description">{{'translateStrings.'+feature.featureDescription| translate}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="image-side">
+        <iframe [src]="videoSrc | safeUrl" class="demo-video" width="100%" frameborder="0"></iframe>
+        <img src="../../assets/mobile.png" alt="">
+    </div>
+</section>
+<!-- mobile view -->
+<section *ngIf="detectedDevice === 'mobile'" class="about-farmrise-container-mobile">
+    <div class="about-farmrise-img" style="margin-top: -12px;">
+        <img src="../../assets/about_farmrise.png" alt="">
+    </div>
+    <div class="about-farmrise-header">
+        <div class="about-farmrise-header-title">{{'translateStrings.about_farmrise' | translate}}</div>
+        <div class="about-farmrise-header-description">
+            <p>
+                {{'translateStrings.about_farmrise_description' | translate}}
+            </p>
+        </div>
+    </div>
+    <cdk-accordion class="about-farmrise-accordion">
+        <cdk-accordion-item *ngFor="let item of aboutFarmRiseFeaturesData; let index = index;"
+            #accordionItem="cdkAccordionItem" class="about-farmrise-accordion-item" role="button" tabindex="0"
+            [attr.id]="'accordion-header-' + index" [attr.aria-expanded]="accordionItem.expanded"
+            [attr.aria-controls]="'accordion-body-' + index">
+            <div class="about-farmrise-accordion-item-header" (click)="accordionItem.toggle()">
+                {{'translateStrings.'+item.featureName| translate}}
+                <span class="about-farmrise-accordion-item-description">
+                    <img src="../../assets/dropdown_arrow.png" alt="">
+                </span>
+            </div>
+            <div class="about-farmrise-accordion-item-body" role="region"
+                [style.display]="accordionItem.expanded ? '' : 'none'" [attr.id]="'accordion-body-' + index"
+                [attr.aria-labelledby]="'accordion-header-' + index">
+                {{'translateStrings.'+item.featureDescription| translate}}
+            </div>
+        </cdk-accordion-item>
+    </cdk-accordion>
+    <div class="mobile-img">
+        <iframe [src]="videoSrc | safeUrl" class="demo-video" frameborder="0"></iframe>
+        <img src="../../assets/mobile.png" alt="">
+    </div>
+</section>
+
+<app-app-download></app-app-download>
+
+<section class="get-in-touch">
+    <div class="getintouch-container">
+        <div *ngIf="!showFeedbackSuccess" class="getintouch-input">
+            <div class="getintouch-header">{{'translateStrings.get_in' | translate}} <span>{{'translateStrings.touch' |
+                    translate}}</span> </div>
+            <div class="getintouch-brief">{{'translateStrings.need_assistance_or_have_queries' | translate}}</div>
+            <form [formGroup]="userFeedbackForm" (ngSubmit)="submitFeedback()">
+                <div class="getintouch-form">
+                    <div class="required-feedback-inputs">
+                        <input type="text" name="name" id="" placeholder="{{'translateStrings.name' | translate}}*"
+                            formControlName="userName" />
+                        <label
+                            *ngIf="detectedDevice === 'desktop' && userFeedbackForm.controls['userName'].invalid && 
+                            (userFeedbackForm.controls['userName'].dirty || userFeedbackForm.controls['userName'].touched)"
+                            for="name">&#10754; {{'translateStrings.enter_name_correctly' | translate}}</label>
+                    </div>
+
+                    <div class="required-feedback-inputs">
+                        <input type="text" name="email" placeholder="{{'translateStrings.email' | translate}}*"
+                            formControlName="email">
+
+                        <label *ngIf="detectedDevice === 'desktop' && userFeedbackForm.controls['email'].invalid && 
+                            (userFeedbackForm.controls['email'].dirty || userFeedbackForm.controls['email'].touched)"
+                            for="name">&#10754; {{'translateStrings.enter_your_email' | translate}}</label>
+                    </div>
+
+                    <div class="required-feedback-inputs">
+                        <input type="text" name="phoneNumber"
+                            placeholder="{{'translateStrings.phone_number' | translate}}*"
+                            formControlName="phoneNumber">
+                        <label
+                            *ngIf="detectedDevice === 'desktop' && userFeedbackForm.controls['phoneNumber'].invalid &&
+                             (userFeedbackForm.controls['phoneNumber'].dirty || userFeedbackForm.controls['phoneNumber'].touched)"
+                            for="phoneNumber">&#10754; {{'translateStrings.enter_10digit_phonenumber' |
+                            translate}}</label>
+                    </div>
+
+                    <div class="required-feedback-inputs">
+                        <textarea name="" id="" cols="30" rows="10"
+                            placeholder="{{'translateStrings.tell_us_what_you_need' | translate}}?*"
+                            formControlName="comment"></textarea>
+                        <label *ngIf="detectedDevice === 'desktop' && userFeedbackForm.controls['comment'].invalid && 
+                        (userFeedbackForm.controls['comment'].dirty || userFeedbackForm.controls['comment'].touched)"
+                            for="comment">&#10754; {{'translateStrings.enter_your_comment' |
+                            translate}}</label>
+                    </div>
+
+                    <span *ngIf="detectedDevice === 'mobile' && userFeedbackForm.controls['userName'].invalid && 
+                        (userFeedbackForm.controls['userName'].dirty || userFeedbackForm.controls['userName'].touched)"
+                        class="mobile-screen-error">
+                        {{'translateStrings.enter_name_correctly' | translate}}
+                    </span>
+
+                    <span
+                        *ngIf="detectedDevice === 'mobile' && userFeedbackForm.controls['phoneNumber'].invalid && (userFeedbackForm.controls['phoneNumber'].dirty || userFeedbackForm.controls['phoneNumber'].touched)"
+                        class="mobile-screen-error">
+                        {{'translateStrings.enter_10digit_phonenumber' | translate}}
+                    </span>
+
+                    <span
+                        *ngIf="detectedDevice === 'mobile' && userFeedbackForm.controls['email'].invalid && (userFeedbackForm.controls['email'].dirty || userFeedbackForm.controls['email'].touched)"
+                        class="mobile-screen-error">
+                        {{'translateStrings.enter_your_email' | translate}}
+                    </span>
+
+                    <span *ngIf="detectedDevice === 'mobile' && userFeedbackForm.controls['comment'].invalid &&
+                     (userFeedbackForm.controls['comment'].dirty || userFeedbackForm.controls['comment'].touched)"
+                        class="mobile-screen-error">
+                        {{'translateStrings.enter_your_comment' | translate}}
+                    </span>
+
+                    <re-captcha style="margin-top: 4%;" siteKey="{{siteKey}}" formControlName="recaptchaCheck">
+                    </re-captcha>
+                    <button type="submit" [disabled]="userFeedbackForm.invalid">{{'translateStrings.send' |
+                        translate}}</button>
+                </div>
+            </form>
+        </div>
+        <div *ngIf="showFeedbackSuccess" class="feedback-success">
+            <div class="feedback-success-img"><img src="../../assets/ic_feedback_success.svg" alt=""></div>
+            <div class="feedback-success-header">{{'translateStrings.we_will_get_back' | translate}}</div>
+            <div class="feedback-success-description">{{'translateStrings.thank_you_reaching_to_us' | translate}}</div>
+        </div>
+    </div>
+    <div *ngIf="detectedDevice === 'desktop'" class="getintouch-img">
+        <img src="../../assets/get_in_touch.png" alt="">
+    </div>
+</section>
+<app-footer></app-footer>

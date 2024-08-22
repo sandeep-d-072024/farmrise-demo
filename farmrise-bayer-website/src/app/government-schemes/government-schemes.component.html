@@ -1,0 +1,54 @@
+<section class="govt-scheme" style="background-color: #00000029;">
+    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+        <p style="color: white;">Please Wait..</p>
+    </ngx-spinner>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap" rel="stylesheet">
+    <div class="govt-scheme-container">
+        <div class="govt-scheme-header-{{detectedDevice}}">
+            <a href="" routerLink="" style="text-decoration: none; color: inherit; line-height: 3;">
+                <div class="back-btn-{{detectedDevice}}">
+                    <img *ngIf="detectedDevice === 'mobile'" src="../../assets/back-arrow-navigation-svgrepo-com.svg" alt=""
+                        height="16px" width="16px">
+                    <img *ngIf="detectedDevice === 'desktop'" src="../../assets/back-arrow-navigation-svgrepo-com.svg" alt=""
+                        height="22px" width="22px">
+                    <span *ngIf="detectedDevice === 'desktop'" style="font-size: 20px;" class="back-text-btn">{{'translateStrings.back' | translate}}</span>
+                </div>
+            </a>
+            <span class="header-text">{{'translateStrings.govt_schemes' | translate}}</span>
+        </div>
+        <div *ngIf="govtSchemeApiResponse!.govtSchemeDetailResponseBO.govtSchemeAttachmentBOList" class="govt-scheme-img-{{detectedDevice}}"><img src="{{govtSchemeApiResponse.govtSchemeDetailResponseBO.govtSchemeAttachmentBOList[0].url}}" alt="Govt. Scheme"></div>
+        <div class="scheme-data-container-{{detectedDevice}}">
+            <div class="govt-scheme-title">{{govtSchemeApiResponse.govtSchemeDetailResponseBO.heading}}</div>
+            <div class="govt-scheme-description" [innerHTML]=govtSchemeApiResponse.govtSchemeDetailResponseBO.description></div>
+        </div>
+    </div>
+
+    <!-- related Schemes for mobile -->
+    <div *ngIf="detectedDevice === 'mobile'" class="related-schemes">
+        <div class="related-schemes-header">{{'translateStrings.some_more_govt_schemes' | translate}}</div>
+        <div class="related-scheme-img"><img src="{{govtSchemeApiResponse.relatedGovtSchemesResponseBO[0].url}}" alt=""></div>
+        <div class="related-scheme-link1">STRATEGIC EXECUTION</div>
+        <div class="related-scheme-title">{{govtSchemeApiResponse.relatedGovtSchemesResponseBO[0].heading}}</div>
+        <div class="related-scheme-description">{{govtSchemeApiResponse.relatedGovtSchemesResponseBO[0].heading}}</div>
+        <div class="related-scheme-link2" (click)="downloadApp()"><span>{{ 'translateStrings.read_more' | translate }} &rarr;</span></div>
+    </div>
+
+    <!-- related scheme for desktop -->
+    <div *ngIf="detectedDevice === 'desktop'" class="related-schemes-desktop">
+        <div class="related-schemes-header-desktop">{{'translateStrings.some_more_govt_schemes' | translate}}</div>
+        <div class="related-schemes-card-container">
+            <div *ngFor="let relScheme of govtSchemeApiResponse.relatedGovtSchemesResponseBO" class="related-scheme-card">
+                <div class="related-scheme-img"><img src="{{relScheme.url}}" alt=""></div>
+                <div class="related-scheme-title-desktop">{{relScheme.heading}}</div>
+                <div class="related-scheme-brief">
+                    <p>{{relScheme.heading}}</p>
+                </div>
+                <div class="related-scheme-link2" (click)="downloadApp()"><span>{{ 'translateStrings.read_more' | translate }} &rarr;</span></div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="detectedDevice === 'mobile'" style="height: 90px; background-color: #fff; margin-top: -4px;"></div>
+</section>
+<app-app-download *ngIf="detectedDevice === 'desktop'"></app-app-download>
+<app-footer *ngIf="detectedDevice === 'desktop'"></app-footer>
+<app-app-download-banner *ngIf="detectedDevice === 'mobile'"></app-app-download-banner>

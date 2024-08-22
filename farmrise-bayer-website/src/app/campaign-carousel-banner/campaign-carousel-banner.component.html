@@ -1,0 +1,25 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap" rel="stylesheet">
+<c-carousel [interval]="2000" transition="slide">
+    <c-carousel-inner>
+        <c-carousel-item *ngFor="let banner of campaignBannersData">
+            <div class="banner" style="background: transparent url({{banner.bannerBackground}}) no-repeat padding-box;
+                                background-size: 100%;
+                                background-position: bottom center;
+                                " [ngStyle]="{'background-color': detectedDevice === 'mobile' ? '#FFF': 'none'}">
+                <span *ngIf="detectedDevice === 'mobile'" class="banner-logo">
+                    <img src="../../assets/ic_logo.webp" alt="logo" width="150" height="50" loading="lazy" class="bayerDesktopLogo" >
+                </span>
+                <span class="banner-title">{{'translateStrings.'+banner.bannerTitle | translate}}</span> 
+                <span class="banner-description">{{'translateStrings.'+banner.bannerDescription | translate}}</span>
+                <button class="get-the-app-btn" (click)="appDownload()">{{'translateStrings.get_the_app' | translate}} <img src="../../assets/ic_right_arrowhead.png"
+                    alt="download_app" width="20" height="20" style="width: 7%;">
+                </button>
+            </div>
+            <div class="banner-indicators" style="text-align:center">
+                <span *ngFor="let i of campaignBannersData" class="dot" [ngClass]="{'dot-active' : i == banner}">
+                </span>
+            </div>
+        </c-carousel-item>
+    </c-carousel-inner>
+</c-carousel>

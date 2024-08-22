@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  title: FarmRise Website
+  name: farmrise-bayer-website
+  description: FarmRise Website India
+  tags:
+    - angular
+  annotations:
+    github.com/project-slug: bayer-int/farmrise-bayer-website
+spec:
+  type: website
+  lifecycle: production
+  owner: farmrise-contributors
+  dependsOn:
+    - component:farmrise-commodity-service

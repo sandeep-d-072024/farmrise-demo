@@ -1,0 +1,93 @@
+.error-container-desktop {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    background-color: #FAFAFA;
+    padding: 6% 10% 3%;;
+    gap: 10%;
+}
+.error-container-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6% 10% 3%;;
+    gap: 10%;
+}
+
+
+.error-header-desktop {
+    color: #2EB363;
+    font-size: 30px;
+    margin-bottom: 3%;
+}
+.error-header-mobile {
+    color: #2EB363;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    margin: 3% 0;
+}
+
+.error-description-desktop {
+    font-size: 18px;
+    margin-bottom: 6%;
+}
+.error-description-mobile {
+    font-size: 14px;
+    margin-bottom: 6%;
+    text-align: center;
+}
+
+.error-img-desktop {
+    flex: 60%;
+}
+.error-img-mobile {
+    margin-bottom: 4%;
+}
+
+.error-response-desktop {
+    flex: 30%;
+}
+
+
+.error-img-desktop img {
+    width: 100%;
+}
+
+.back-btns-desktop {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 23%;
+    font-size: 14px;
+}
+.back-btns-mobile {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.take-me-home-desktop button {
+    color: #fff;
+    background-color: #2EB363;
+    border: #2EB363 solid;
+    border-radius: 4px;
+    padding: 8% 12%;
+    width: max-content;
+}
+.take-me-home-mobile button {
+    color: #fff;
+    background-color: #2eb363;
+    border: #2EB363 solid;
+    border-radius: 4px;
+    padding: 5% 4%;
+    font-weight: 600;
+    width: 100%;
+    margin: 6% 0 10%;;
+}
+.go-back{
+    color: #2EB363;
+    text-align: center;
+}

@@ -1,0 +1,330 @@
+.about-farmrise-container-desktop {
+    margin: 2% 8%;
+    display: flex;
+    gap: 8%;
+}
+
+.feature-side {
+    float: left;
+    width: 60%;
+}
+
+.about-farmrise-header {
+    font-size: 30px;
+    font-weight: 600;
+    padding: 0 0 4% 0;
+}
+
+.farmrise-features-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.feature-block {
+    font-size: 18px;
+    line-height: 30px;
+}
+
+.feature-name {
+    padding: 0 0 0 6%;
+}
+
+.feature-description {
+    padding-bottom: 6%;
+}
+
+.image-side {
+    float: left;
+    width: auto;
+    padding-top: 4%;
+}
+
+.image-side img {
+    width: auto;
+    height: auto;
+}
+
+.about-farmrise-img img {
+    width: 100%;
+}
+
+.about-farmrise-header {
+    margin: 4% 4%;
+}
+
+.about-farmrise-header-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.about-farmrise-header-description {
+    font-size: 14px;
+    font-weight: 100;
+}
+
+
+.about-farmrise-accordion {
+    display: block;
+    max-width: 500px;
+}
+
+.about-farmrise-accordion-item {
+    display: block;
+    border-top: solid 1px #ccc;
+    border-bottom: solid 1px #ccc;
+}
+
+.about-farmrise-accordion-item+.about-farmrise-accordion-item {
+    border-top: none;
+}
+
+.about-farmrise-accordion-item-header {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.about-farmrise-accordion-item-description {
+    font-size: 0.85em;
+    color: #999;
+}
+
+.about-farmrise-accordion-item-header,
+.about-farmrise-accordion-item-body {
+    padding: 16px;
+}
+
+.about-farmrise-accordion-item-header:hover {
+    cursor: pointer;
+    background-color: #eee;
+}
+
+.about-farmrise-accordion-item-description img {
+    height: 24px;
+    width: 24px;
+}
+
+.mobile-img {
+    margin: 4%;
+    height: auto;
+}
+
+.mobile-img img {
+    width: 100%;
+}
+
+.demo-video{
+    position: absolute;
+    width: 80%;
+    height: 65%;
+    margin: 17% 6%;
+    z-index: 999;
+    @media screen and (min-width: 916px) {
+        width: 32%;
+        height: 96%;
+        margin: 6% 2%;
+    };
+    @media screen and (min-width: 1281px) {
+        width: 28%;
+    };
+    @media screen and (min-width: 1696px) {
+        width: 22%;
+        height: 76%;
+        margin: 6% 1%;
+    }
+}
+
+.get-in-touch {
+    background-color: #0F172A;
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    padding: 0 3% 0 2%
+}
+
+.getintouch-container {
+    color: #FFFFFF;
+}
+
+.getintouch-container {
+    flex: 74%;
+}
+
+.getintouch-img {
+    flex: 30%;
+}
+
+.getintouch-header {
+    font-size: 30px;
+    font-weight: 600;
+    margin: 2% 8%;
+    padding-top: 2%;
+
+    @media screen and (max-width: 560px) {
+        font-size: 20px;
+        font-weight: 600;
+        margin: 6% 4%;
+        padding-top: 2%;
+    }
+}
+
+.getintouch-header span {
+    color: #2EB363;
+}
+
+.getintouch-brief {
+    font-size: 18px;
+    margin: 2% 8%;
+    padding-top: 2%;
+    width: 60%;
+
+    @media screen and (max-width: 560px) {
+        font-size: 14px;
+        margin: 2% 4%;
+        width: 96%
+    }
+}
+
+.getintouch-form {
+    display: flex;
+    margin: 2% 8%;
+    flex-direction: column;
+    width: 87%;
+
+    @media screen and (max-width: 560px) {
+        margin: 2% 4% 11% 4%;
+        width: 91%;
+    }
+}
+
+.required-feedback-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2%;
+
+    @media screen and (max-width: 560px) {
+        display: block;
+        width: 100%
+    }
+}
+
+.getintouch-form input {
+    background-color: #0F172A;
+    border: #FFFFFF solid 1px;
+    border-radius: 3px;
+    color: #FFFFFF;
+    margin-top: 4%;
+    padding: 1% 2%;
+    line-height: 2.5em;
+    width: 56%;
+
+    @media screen and (max-width: 560px) {
+        width: 100%
+    }
+}
+
+input.ng-invalid.ng-touched{
+    border-color: #E33E45;
+}
+
+.getintouch-form label {
+    margin-top: 4%;
+    font-size: 16px;
+    color: #F6253D;
+
+    @media screen and (max-width: 1840px) {
+        /* margin-top: 0; */
+    }
+}
+
+.getintouch-form textarea {
+    background-color: #0F172A;
+    border: #FFFFFF solid 1px;
+    border-radius: 3px;
+    margin-top: 4%;
+    padding: 1% 2%;
+    line-height: 1em;
+    width: 56%;
+    color: #FFFFFF;
+    @media screen and (max-width: 560px) {
+        width: 100%
+    }
+}
+
+textarea.ng-invalid.ng-touched{
+    border-color: #E33E45;
+}
+
+::placeholder {
+    color: #666666;
+    font-size: 16px;
+    opacity: 1;
+}
+
+.getintouch-form button {
+    background-color: #2EB363;
+    color: #FFFFFF;
+    font-size: 18px;
+    margin-top: 4%;
+    height: 3em;
+    border: #2EB363 solid 1px;
+    border-radius: 3px;
+    width: 60%;
+
+    @media screen and (max-width: 560px) {
+        font-size: 16px;
+        margin-top: 12%;
+        height: 2.5em;
+        width: 104%
+    }
+}
+
+.mobile-screen-error {
+    color: #E33E45;
+    padding-top: 2%;
+    font-size: 12px;
+}
+
+.getintouch-img {
+    margin: 2% 4% 0 0;
+    padding: 8% 2%;
+}
+
+.getintouch-img img {
+    width: 100%;
+}
+
+.feedback-success{
+    display: flex;
+    flex-direction: column;
+    padding: 22% 8%;
+    @media screen and (max-width: 560px) {
+        padding: 16% 1%;
+    }
+}
+.feedback-success-img{
+    padding-bottom: 2%;
+}
+.feedback-success-img img{
+    height: 48px;
+    width: 48px;
+    @media screen and (max-width: 560px) {
+        height: 28px;
+        width: 28px;
+    }
+}
+.feedback-success-header{
+    font-size: 30px;
+    color: #27AE60;
+    padding-bottom: 4%;
+    @media screen and (max-width: 560px) {
+        font-size: 20px;
+    }
+}
+.feedback-success-description{
+    font-size: 18px;
+    @media screen and (max-width: 560px) {
+        font-size: 14px;
+    }
+}

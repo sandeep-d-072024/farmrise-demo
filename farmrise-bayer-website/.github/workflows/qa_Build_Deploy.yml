@@ -1,0 +1,135 @@
+name: Farmrise-website-qa_Build_Deploy
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  Build_Deploy_npm_qa:
+    name: Build_Deploy_npm_qa
+    runs-on: [self-hosted, linux, external-k8s]
+
+    steps:
+      - name: START
+        run: echo "start_time=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+
+      - name: ServiceName Variable
+        run: |
+          echo "service_name=farmrise-website" >> $GITHUB_ENV
+
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Import Secrets
+        uses: hashicorp/vault-action@v2.4.0
+        with:
+          method: approle
+          roleId: ${{ secrets.ROLEID_DFS }}
+          secretId: ${{ secrets.SECRETID_DFS }}
+          url: https://vault.agro.services/
+          secrets: |
+            secret/apacdi-platform/cloudops/tools/jfrog username | JFROG_USERNAME ;
+            secret/apacdi-platform/cloudops/tools/jfrog secret | JFROG_SECRET ;
+            secret/apacdi-platform/aws-keys/farmrise-website AWS_ACCESS_KEY_ID | AWS_ACCESS_KEY_ID ;
+            secret/apacdi-platform/aws-keys/farmrise-website AWS_SECRET_ACCESS_KEY | AWS_SECRET_ACCESS_KEY ;
+
+      - name: Fetch Service Version
+        run: echo "service_version=$(awk '/app/{getline;print;}' package.json | awk -F '[""]' '{print $4}')" >> $GITHUB_ENV
+
+      - name: Verify Service Version
+        run: curl -u $JFROG_USERNAME:$JFROG_SECRET -I https://artifactory.bayer.com/artifactory/farmrise-maven-prod-diengineering/backend-services/qa/${service_name}/${service_version} -s | head -1 | awk {'print $2'} | grep 404
+
+      - name: Setup jfrogcli
+        uses: jfrog/setup-jfrog-cli@v1
+
+      - name: Install npm
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20.13.1'
+
+      - name: Build npm
+        run: |
+          npm config rm proxy
+          npm config rm https-proxy
+          npm install -d bootstrap --save
+          npm install -g @angular/cli
+          ng config -g cli.warnings.versionMismatch false
+          ng build --configuration=qa
+
+      - name: Analyze Unused JavaScript
+        run: |
+          npm install -g webpack-bundle-analyzer
+          ng build --stats-json
+          webpack-bundle-analyzer dist/stats.json
+
+      - name: Convert PNG/JPEG to WebP
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+          inputDir="src/assets"
+          outputDir="src/assets/webp"
+          
+          # Create output directory if it doesn't exist
+          mkdir -p $outputDir
+          
+          for file in $inputDir/*.{png,jpeg,jpg}; do
+              if [ -f "$file" ]; then
+                  filename=$(basename -- "$file")
+                  basename="${filename%.*}"
+                  convert "$file" "$outputDir/$basename.webp"
+                  echo "Converted $filename to WebP format."
+              else
+                  echo "No images found to convert."
+              fi
+          done
+
+      - name: Compress files with Gzip
+        run: |
+          find dist/farmrise-bayer-website -type f -name "*" ! -name "*.gz" -exec gzip -k "{}" \;
+
+      - name: Zip file creation
+        run: |
+          which zip || sudo apt-get install zip -y
+          cd dist/
+          zip -r farmrise-website.zip farmrise-bayer-website/
+
+      - name: Upload Zip Package
+        run: |
+          cd dist/
+          jfrog rt u "farmrise-website.zip" farmrise-maven-prod-diengineering/backend-services/qa/${service_name}/${service_version}/ --url=https://artifactory.bayer.com/artifactory --user=${JFROG_USERNAME} --password=${JFROG_SECRET}
+
+      - name: Upload zip to S3
+        env:
+          AWS_DEFAULT_REGION: ${{ secrets.DEFAULT_REGION }}
+        run: |
+          which aws || sudo apt-get install awscli -y
+          cd dist
+          aws s3 cp --recursive farmrise-bayer-website s3://farmrise-website-qa/
+
+      - name: Deployment
+        env:
+          AWS_DEFAULT_REGION: ${{ secrets.DEFAULT_REGION }}
+        run: |
+          aws cloudfront create-invalidation --distribution-id E1376Q5GKVBS6M --paths "/*"
+
+      - name: Fetch Webhook URL
+        if: ${{ always() }}
+        env:
+          GH_WEBHOOK: ${{ secrets.TEAMS_WEBHOOK }}
+        run: echo "GH_WEBHOOK=$GH_WEBHOOK" >> $GITHUB_ENV
+
+      - name: END
+        if: ${{ always() }}
+        run: echo "end_time=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+
+      - name: Notify Teams Success Message
+        if: ${{ success() }}
+        run: |
+          curl -H 'Content-Type: application/json' -d '{ "@type": "MessageCard", "themeColor": "0076D7", "summary": "Github actions trigger", "sections": [{ "activityTitle": "'"Actions triggered - $GITHUB_WORKFLOW - $GITHUB_REPOSITORY"'", "activitySubtitle": "Github actions", "facts": [{ "name": "Triggered By", "value": "'"$GITHUB_ACTOR"'" }, { "name": "Started", "value": "'"$start_time"'" }, { "name": "Version", "value": "'"$service_version"'" }, { "name": "Branch", "value": "'"${GITHUB_REF##*/}"'" }, { "name": "Ended", "value": "'"$end_time"'" }, { "name": "Status", "value": "Success" }], "markdown": true }], "potentialAction": [{ "@type": "OpenUri", "name": "Github Actions", "targets": [{ "os": "default", "uri": "'"https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"'" }] }, { "@type":"OpenUri", "name":"Download", "targets":[ { "os":"default", "uri":"'"https://artifactory.bayer.com/ui/repos/tree/General/diengineering-maven-prod-plantect%2Fbackend-services%2Fqa%2F${service_name}%2F${service_version}"'" }] }] }' $GH_WEBHOOK
+
+      - name: Notify Teams Failure Message
+        if: ${{ failure() }}
+        run: |
+          curl -H 'Content-Type: application/json' -d '{ "@type": "MessageCard", "themeColor": "FF0000", "summary": "Github actions trigger", "sections": [{ "activityTitle": "'"Actions triggered - $GITHUB_WORKFLOW - $GITHUB_REPOSITORY"'", "activitySubtitle": "Github actions", "facts": [{ "name": "Triggered By", "value": "'"$GITHUB_ACTOR"'" }, { "name": "Started", "value": "'"$start_time"'" }, { "name": "Version", "value": "'"$service_version"'" }, { "name": "Branch", "value": "'"${GITHUB_REF##*/}"'" }, { "name": "Ended", "value": "'"$end_time"'" }, { "name": "Status", "value": "Failure" }], "markdown": true }], "potentialAction": [{ "@type":"OpenUri", "name":"Github Actions", "targets":[ { "os":"default", "uri":"'"https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"'" }] }] }' $GH_WEBHOOK

@@ -1,0 +1,24 @@
+<div class="container popup-container">
+    <div class="lang-sel-popup">
+      <link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet'>
+      <table style="border-collapse: collapse;" class="lang-sel-table">
+        <thead>
+          <span><img src="../../assets/ic_close_grey.svg" alt="close" (click)="closeLanguageSelectionPopup()"></span>
+          <span>
+            <p>{{ 'translateStrings.select_your_preferred_language' | translate }}</p>
+          </span>
+        </thead>
+        <tbody>
+          <tr *ngFor="let lang of languages" [ngStyle]="{ 'border-bottom': languages.indexOf(lang) != languages.length-1 ? '1px solid #E3E6E9' : 'none' }">
+            <td (click)="onLanguageSelection(lang.iso6391)">
+              <span>
+                <input type="radio" value="{{ lang.iso6391 }}" [(ngModel)]="defaultSelectedLanguage" name="languages" />
+                <label class="lang-main-text">{{ lang.name }}</label>
+              </span>
+              <span><label class="lang-sub-text">{{ languagesSubText[languages.indexOf(lang)] }}</label></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

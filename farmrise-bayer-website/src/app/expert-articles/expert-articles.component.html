@@ -1,0 +1,55 @@
+<section *ngIf="!showErrorResponse" class="expert-article" style="background-color: #00000029;">
+    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+        <p style="color: white;">Please Wait..</p>
+    </ngx-spinner>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap" rel="stylesheet">
+    <div class="expert-article-container">
+        <div class="expert-article-header-{{detectedDevice}}">
+            <a routerLink="" style="text-decoration: none; color: inherit;">
+                <div class="back-btn-{{detectedDevice}}">
+                    <img *ngIf="detectedDevice === 'mobile'" src="../../assets/back-arrow-navigation-svgrepo-com.svg" alt=""
+                        height="16px" width="16px">
+                    <img *ngIf="detectedDevice === 'desktop'" src="../../assets/back-arrow-navigation-svgrepo-com.svg" alt=""
+                        height="22px" width="22px">
+                    <span *ngIf="detectedDevice === 'desktop'" style="font-size: 20px;" class="back-text-btn">{{'translateStrings.back' | translate}}</span>
+                </div>
+            </a>
+            <span class="header-text" style="font-size: 20px;">{{'translateStrings.expert_articles' | translate}}</span>
+        </div>
+        <div class="expert-article-img-{{detectedDevice}}"><img src="{{articleApiResponse.url}}" alt=""></div>
+        <div class="article-data-container-{{detectedDevice}}">
+            <div class="expert-article-title">{{articleApiResponse.title}}</div>
+            <div class="expert-article-info">{{articleApiResponse.source + (articleApiResponse.publishDate| dateFormat)}}</div>
+            <div class="expert-article-description" [innerHTML]=articleApiResponse.description></div>
+        </div>
+    </div>
+
+    <!-- related articles for mobile -->
+    <div *ngIf="detectedDevice === 'mobile'" class="related-articles">
+        <div class="related-articles-header">{{'translateStrings.some_more_articles' | translate}}</div>
+        <div class="related-article-img"><img src="{{articleApiResponse.relatedArtilces[0].url}}" alt=""></div>
+        <div class="related-article-link1">STRATEGIC EXECUTION</div>
+        <div class="related-article-title">{{articleApiResponse.relatedArtilces[0].title}}</div>
+        <div class="related-article-link2" (click)="appDownload()"><span>{{ 'translateStrings.read_more' | translate }} &rarr;</span></div>
+    </div>
+
+    <!-- related article for desktop -->
+    <div *ngIf="detectedDevice === 'desktop'" class="related-articles-desktop">
+        <div class="related-articles-header-desktop">{{'translateStrings.some_more_articles' | translate}}</div>
+        <div class="related-articles-card-container">
+            <div *ngFor="let article of articleApiResponse.relatedArtilces" class="related-article-card">
+                <div class="related-article-img"><img src="{{article.url}}" alt=""></div>
+                <div class="related-article-title-desktop">{{article.title}}</div>
+                <div class="related-article-info">{{article.publishedDate | dateFormat}}</div>
+                <div class="related-article-brief">
+                </div>
+                <div class="related-article-link2" (click)="appDownload()"><span>{{ 'translateStrings.read_more' | translate }} &rarr;</span></div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="detectedDevice === 'mobile'" style="height: 90px; background-color: #fff; margin-top: -4px;"></div>
+</section>
+<app-error *ngIf="showErrorResponse"></app-error>
+<app-app-download *ngIf="detectedDevice === 'desktop'"></app-app-download>
+<app-footer *ngIf="detectedDevice === 'desktop'"></app-footer>
+<app-app-download-banner *ngIf="detectedDevice === 'mobile'"></app-app-download-banner>

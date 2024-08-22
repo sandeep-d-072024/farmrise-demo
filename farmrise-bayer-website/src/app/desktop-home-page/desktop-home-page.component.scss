@@ -1,0 +1,1003 @@
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.banner-image {
+  width: 100%;
+  height: auto;
+}
+
+.desktop-homescreen-banner {
+  background-image: url("../../assets/ic_banner_image.png");
+  width: 100%;
+  height: 450px;
+  opacity: 0.7;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.rotating-banner {
+  position: absolute;
+  height: 450px;
+  background: #0000008a;
+  padding: 0 10%;
+  display: flex;
+  flex-direction: row;
+  gap: 10%;
+  align-items: center;
+}
+
+.banner-detail {
+  float: left;
+  width: 74%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.banner-title {
+  color: #FFFFFF;
+  font-size: 56px;
+  font-weight: 600;
+}
+
+.banner-description {
+  color: #FFFFFF;
+  font-size: 18px;
+  padding-top: 5%;
+}
+
+.banner-img {
+  float: left;
+  width: 30%;
+}
+
+.banner-img img {
+  width: 90%;
+}
+
+.weather-crop-doctor-card {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.weather {
+  width: 50%;
+}
+
+.crop-doctor {
+  width: 50%;
+}
+
+.weatherCard {
+  padding-top: 46px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 46px;
+  position: relative;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #D1D1D1;
+  margin-left: 30px;
+  margin-right: 8px;
+}
+
+.weatherLocation {
+  font-size: 30px;
+  font-weight: bolder;
+  color: #333333;
+}
+
+.text-bold-30 {
+  font-size: 30px;
+  font-weight: bolder;
+  color: #333333;
+}
+
+.weatherStatus {
+  font-size: 20px;
+  display: absolute;
+  margin-top: 20px;
+  color: #333333;
+}
+
+.cropDoctorCard {
+  padding-top: 46px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 16px;
+  background: #EAF5CE;
+  border-radius: 10px;
+  margin-right: 30px;
+  margin-left: 8px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cropDoctorCard .content {
+  width: 60%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cropDoctorCard .description {
+  font-size: 16px;
+  color: #333333;
+  display: absolute;
+  margin-top: 2px;
+  line-height: 20px;
+}
+
+.cropDoctorCard .image {
+  width: 40%;
+  display: flex;
+  justify-content: end;
+}
+
+.cropDoctorCard .footer {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 32px;
+  align-items: center;
+}
+
+.cropDoctorCard .download-our-app-button {
+  display: absolute;
+  width: fit-content;
+  background-color: #2eb363;
+  padding-top: 10px;
+  padding-right: 16px;
+  padding-bottom: 10px;
+  padding-left: 16px;
+  color: white;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.cropDoctorCard .watch-how-it-works {
+  font-size: 16px;
+  color: #00B759;
+  margin-left: 32px;
+}
+
+.contentCards {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 152px;
+  margin-right: 152px;
+  margin-top: 50px;
+}
+
+.weatherInfo,
+.cropInfo {
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 1px solid #D1D1D1;
+  border-radius: 10px;
+  opacity: 1;
+  height: 180px !important;
+  flex-grow: 1;
+  margin: 10px;
+  height: 50px;
+  width: 50%;
+}
+
+.weatherInfo {
+  padding-top: 46px;
+  padding-bottom: 46px;
+  padding-left: 16px;
+  padding-right: 28px;
+  position: relative;
+}
+
+.cropInfo {
+  padding-left: 26px;
+  padding-right: 37px;
+  padding-top: 45px;
+  padding-bottom: 46px;
+  background: #EAF5CE 0% 0% no-repeat padding-box;
+  border-radius: 10px;
+  opacity: 1;
+  position: relative;
+}
+
+.cropInfo .image {
+  position: absolute;
+  right: 0px;
+  margin-right: 10px;
+  top: 35px;
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.city,
+.cropDoc {
+  text-align: left;
+  letter-spacing: 0px;
+  color: #333333;
+  opacity: 1;
+  line-height: 24px;
+  font-size: 24px;
+  font-weight: bolder;
+  @media screen and (max-width: 1280px) {
+    font-size: 22px;
+  }
+}
+
+.cityWeatherCondition {
+  text-align: left;
+  font-size: 20px;
+  letter-spacing: 0px;
+  color: #333333;
+  opacity: 1;
+  font-size: 14px;
+  line-height: 27px;
+  margin-top: 23px;
+}
+
+.temperature {
+  position: absolute;
+  right: 0px;
+  margin-right: 10px;
+  top: 50px;
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.temperature .text {
+  margin-right: 8px;
+  color: #144165;
+  font-size: 65px;
+  line-height: 56px;
+}
+
+.temperature .img {
+  position: relative;
+  margin-right: 10px;
+  margin-top: 4px;
+}
+
+.enableLocation {
+  color: #00B759;
+  text-align: left;
+  text-decoration: underline;
+  font-size: 20px;
+  letter-spacing: 0;
+  color: #00B759;
+  opacity: 1;
+  margin-top: 84px;
+}
+
+.enableLocation p {
+  font-size: 20px;
+  height: 0;
+  cursor: pointer;
+}
+
+.cropCondition {
+  text-align: left;
+  letter-spacing: 0px;
+  color: #333333;
+  opacity: 1;
+  font-size: 20px;
+  margin-top: 21px;
+  width: 65%;
+  @media screen and (max-width: 1280px) {
+    font-size: 16px;
+  }
+}
+
+.cropButtons {
+  display: flex;
+  margin-top: 50px;
+}
+
+.cropButtons .download-our-app-button {
+  display: absolute;
+  background-color: #2eb363;
+  padding-top: 10px;
+  padding-right: 16px;
+  padding-bottom: 10px;
+  padding-left: 16px;
+  color: white;
+  font-size: 22px;
+  border-radius: 4px;
+  cursor: pointer;
+  @media screen and (max-width: 1280px) {
+    font-size: 16px;
+  }
+}
+
+.cropButtons .watchWorks {
+  text-align: left;
+  text-decoration: underline;
+  font-size: 22px;
+  letter-spacing: 0px;
+  color: #00B759;
+  opacity: 1;
+  margin-left: 36px;
+  margin-top: 7px;
+  cursor: pointer;
+}
+
+// Mandi feature styling
+.mandiPrices {
+  margin-left: 152px;
+  margin-right: 152px;
+  margin-bottom: 44px;
+  margin-top: 50px;
+}
+.mandiPrices {   margin-left: 152px;   margin-right: 152px;   margin-bottom: 44px;   margin-top: 50px;   width: 100%;
+  /* Adjust based on design requirements */
+  }
+
+.mandiPrices header {
+  text-align: left;
+  letter-spacing: 0px;
+  color: #333333;
+  opacity: 1;
+  font-size: 30px;
+  margin: 10px;
+  font-weight: bolder;
+}
+
+.crop-card-container {
+  width: auto;
+  height: fit-content;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  gap: 39px;
+}
+
+.crop-card {
+  flex: 30%;
+  display: grid;
+  height: fit-content;
+  border: 1px solid #D1D1D1;
+  border-radius: 10px;
+
+}
+
+.crop-detail {
+  margin: 22px 19px 0;
+  gap: 6%;
+  display: flex;
+  align-items: center;
+}
+
+.crop-img {
+  float: left;
+  width: 20%;
+}
+
+.crop-img img {
+  width: 45px;
+  height: 61px;
+}
+
+.crop-info {
+  float: left;
+  width: 60%;
+  padding: 0 6%;
+}
+
+.crop-card span {
+  display: block;
+}
+
+.crop-name {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.crop-quantity {
+  font-size: 14px;
+}
+
+.pricing-info {
+  color: #333333;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.markets-list {
+  margin: 19px;
+}
+
+.market-info {
+  height: 74px;
+  padding-top: 4%;
+  border-top: 1px solid #E3E6E9;
+}
+
+.market-col {
+  float: left;
+  width: 45%;
+  text-align: left;
+}
+
+.market-col span {
+  display: block;
+  margin: 2px;
+}
+
+.market-name {
+  color: #333333;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.market-distance {
+  color: #666666;
+  font-size: 14px;
+}
+
+.price-trend {
+  color: #C53E00;
+  font-size: 12px;
+}
+
+.pricing-col {
+  float: left;
+  width: 55%;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-col span {
+  display: flex;
+  margin: 2px;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3%;
+}
+
+.pricing-col span img {
+  width: 24px;
+  height: 24px;
+}
+
+.update-info {
+  color: #666666;
+  font-size: 14px;
+}
+
+
+// Govt. Schemes
+.govtSchemes {
+  background: #EEF7D7 0% 0% no-repeat padding-box;
+  opacity: 1;
+  padding-left: 152px;
+  padding-right: 152px;
+  padding-top: 65px;
+  padding-bottom: 48px;
+}
+
+.govtscheme-header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2%;
+  margin-bottom: 4%;
+}
+
+.govtSchemes .title {
+  font-size: 30px;
+  text-align: left;
+  font-size: 30px;
+  letter-spacing: 0px;
+  color: #333333;
+  font-weight: bolder;
+  opacity: 1;
+}
+
+.govtSchemes .schemes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.schemeOne {
+  width: 50%;
+  flex-grow: 1;
+  margin-right: 100px;
+}
+.schemeOne:hover{
+  cursor: pointer;
+}
+
+
+.schemeOne img {
+  border-radius: 10px;
+  opacity: 1;
+  width: 100%;
+  height: 70%;
+}
+
+.dateOne,
+.dateTwo {
+  margin-top: 30px;
+  text-align: left;
+  letter-spacing: 0px;
+  color: #333333;
+  opacity: 1;
+  font-size: 14px;
+}
+
+.schemeTwo {
+  width: 50%;
+  flex-grow: 1;
+}
+.schemeTwo:hover{
+  cursor: pointer;
+}
+
+.schemeTwo img {
+  border-radius: 10px;
+  opacity: 1;
+  width: 100%;
+  height: 70%;
+}
+
+.schemeLabel {
+  margin-top: 18px;
+  text-align: left;
+  letter-spacing: 0px;
+  color: #333333;
+  opacity: 1;
+  font-size: 24px;
+}
+
+// Articles
+.articles {
+  opacity: 1;
+  padding-left: 152px;
+  padding-right: 152px;
+  padding-top: 65px;
+  padding-bottom: 48px;
+}
+
+.articles .title {
+  font-size: 30px;
+  text-align: left;
+  letter-spacing: 0px;
+  color: #333333;
+  opacity: 1;
+  font-weight: bolder;
+}
+
+.articles .schemes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.article-likes{
+  display: flex;
+  gap: 72%;
+}
+
+.articles .schemeOne {
+  width: 50%;
+  flex-grow: 1;
+  margin-right: 100px;
+}
+
+.articles .schemeOne img {
+  border-radius: 10px;
+  opacity: 1;
+  width: 100%;
+  height: 70%;
+}
+
+.articles .dateOne,
+.articles .dateTwo {
+  margin-top: 30px;
+  text-align: left;
+  letter-spacing: 0px;
+  color: #333333;
+  opacity: 1;
+  font-size: 14px;
+}
+
+.articles .schemeTwo {
+  width: 50%;
+  flex-grow: 1;
+}
+
+.articles .schemeTwo img {
+  border-radius: 10px;
+  opacity: 1;
+  width: 100%;
+  height: 70%;
+}
+
+.schemeLabel {
+  margin-top: 18px;
+  text-align: left;
+  font-weight: bolder;
+  letter-spacing: 0px;
+  color: #333333;
+  opacity: 1;
+  font-size: 24px;
+}
+
+.view-more{
+  color: #2FB944;
+  position: absolute;
+  right: 11%;
+  font-size: 18px;
+}
+.view-more:hover{
+  cursor: pointer;
+}
+
+// Much More
+.muchMore {
+  background: #EEF7D7 0% 0% no-repeat padding-box;
+  opacity: 1;
+  padding-left: 152px;
+  padding-right: 152px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.muchMore .title {
+  margin-bottom: 50px;
+  font-size: 30px;
+  text-align: left;
+  font-weight: bolder;
+  letter-spacing: 0px;
+  color: #333333;
+  opacity: 1;
+}
+
+.muchMore .features {
+  display: flex;
+  justify-content: space-between;
+}
+
+.muchMore .featureOne {
+  width: 50%;
+  flex-grow: 1;
+  margin-right: 100px;
+}
+
+.muchMore .featureOne img {
+  opacity: 1;
+  width: 100px;
+  height: 100px;
+}
+
+.muchMore .featureTwo {
+  width: 50%;
+  flex-grow: 1;
+  margin-right: 100px;
+}
+
+.muchMore .featureTwo img {
+  opacity: 1;
+  width: 100px;
+  height: 100px;
+}
+
+.muchMore .featureThree {
+  width: 50%;
+  flex-grow: 1;
+}
+
+.muchMore .featureThree img {
+  opacity: 1;
+  width: 100px;
+  height: 100px;
+}
+
+.muchMore .featureName {
+  margin-top: 18px;
+  text-align: left;
+  font-size: 18px;
+  font-weight: bolder;
+  letter-spacing: 0px;
+  color: #333333;
+  opacity: 1;
+}
+
+.muchMore .featureDescription {
+  margin-top: 10px;
+  text-align: left;
+  font-size: 16px;
+  letter-spacing: 0px;
+  color: #707070;
+  opacity: 1;
+}
+
+// advertising section
+.advertising-section {
+  background: #0F172A 0% 0% no-repeat padding-box;
+  padding-left: 152px;
+  padding-right: 152px;
+  padding-top: 76px;
+  padding-bottom: 100px;
+  color: white;
+}
+
+.advertising-section .details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.advertising-section .sectionOne {
+  width: 50%;
+  flex-grow: 1;
+  margin-right: 100px;
+  color: white;
+}
+
+.advertising-section .sectionTwo {
+  width: 50%;
+  flex-grow: 1;
+  margin-right: 100px;
+}
+
+.advertising-section .sectionThree {
+  width: 50%;
+  flex-grow: 1;
+}
+
+.advertising-section .title {
+  font-size: 48px;
+  letter-spacing: 0px;
+  color: white;
+  opacity: 1;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.advertising-section .description {
+  margin-top: 13px;
+  text-align: center;
+  font: normal normal normal 20px;
+  letter-spacing: 0px;
+  color: white;
+  opacity: 1;
+}
+
+// download-app
+.download-app {
+  height: 242px;
+  background: #27AE60 0% 0% no-repeat padding-box;
+  opacity: 1;
+  display: flex;
+  flex-direction: row;
+  padding-left: 152px;
+  padding-right: 152px;
+}
+
+.download-app .download-app-text {
+  width: 65%;
+}
+
+.download-app .download-app-image {
+  width: 35%;
+  margin-top: 60px;
+  text-align: center;
+}
+.download-app .download-app-image:hover{
+  cursor: pointer;
+}
+
+.download-app .download-app-text .title {
+  margin-top: 50px;
+  font-size: 30px;
+  letter-spacing: 0px;
+  color: white;
+  font-weight: bolder;
+  opacity: 1;
+}
+
+.download-app .download-app-text .description {
+  text-align: left;
+  font-size: 18px;
+  letter-spacing: 0px;
+  color: white;
+  opacity: 1;
+  margin-top: 24px;
+}
+
+.whatsApp {
+  background: #0F172A 0% 0% no-repeat padding-box;
+  opacity: 1;
+  display: flex;
+  flex-direction: row;
+  padding-left: 152px;
+  padding-right: 152px;
+}
+
+.whatsApp .whatsAppText {
+  width: 65%;
+}
+
+.whatsAppImage {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  padding-bottom: 110px;
+  padding-left: 240px;
+
+}
+
+.whatsAppImage img.whatsAppImg {
+  max-width: 100px; /* Adjust image size */
+  height: auto;
+  aspect-ratio: 1 / 1; /* Maintain aspect ratio */
+}
+
+.whatsAppImg {
+  width: 50px;
+  height: 50px;
+}
+
+
+
+.whatsApp .whatsAppText .title {
+  margin-top: 45px;
+  font-size: 30px;
+  font-weight: bolder;
+  letter-spacing :-1.2px;
+  color: white;
+  opacity: 1;
+}
+
+.whatsApp .whatsAppText .description {
+  text-align: left;
+  font-size: 18px;
+  letter-spacing: 0px;
+  color: white;
+  opacity: 1;
+  margin-top: 5px;
+}
+
+.whatsApp .phoneNumber {
+  display: flex;
+  flex-direction: column;
+  margin-top: 33px;
+  margin-bottom: 50px;
+  line-height: 2;
+}
+
+.whatsApp input {
+  width: 100%;
+  padding: 16px;
+  border-radius: 10px;
+  border: none
+}
+
+.thankyou {
+  background-color: #E0FFEE;
+  padding: 2% 12%;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.thankyou p {
+  width: 78vw;
+}
+.phoneNumber .error {
+  color: #E33E45;
+  font-size: 0.875rem;
+  margin-top: 5px;
+}
+/* Responsive Design */
+@media only screen and (max-width: 600px) {
+  .whatsApp {
+      flex-direction: column;
+      align-items: center;
+  }
+  
+  .whatsAppImage {
+      margin-top: 15px;
+      max-width: 80px;
+  }
+  
+  .whatsAppText .title,
+  .thankYouTitle {
+      font-size: 1.25rem;
+      text-align: center;
+  }
+
+  .whatsAppText .description,
+  .thankYouDescription {
+      font-size: 0.875rem;
+      text-align: center;
+  }
+
+  .phoneNumber input[type="tel"] {
+      max-width: 100%;
+  }
+}
+
+.testimonial-container{
+  background-color: #0F172A;
+  color: #FFFFFF;
+  padding-bottom: 4%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.testimonial-header{
+  display: flex;
+  color: #FFFFFF;
+  font-size: 30px;
+  font-weight: 600;
+  align-items: center;
+  padding-top: 2%;
+  padding-bottom: 4%;
+  justify-content: center;
+}
+
+.testimonial-data{
+  display: flex;
+  flex-direction: row;
+  gap: 3%;
+}
+
+.testimonial-card{
+  border: 1px solid #FFFFFF;
+  border-radius: 8px;
+  display: flex;
+  flex: 50
+}
+
+.testimonial-card img{
+  height: 284px;
+  width: 332px;
+}
+
+.testimonial-info{
+  display: flex;
+  flex-direction: column;
+  padding-top: 10%;
+  padding-right: 2%;
+  flex: 52;
+}
+
+span.header{
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10%;
+}
+span.description{
+  font-size: 14px;
+}
+/* Set a minimum height for the section to prevent shifts */
+section[_ngcontent-bbx-c13] {
+  min-height: 200px; /* Adjust the height as needed */
+}
+
+/* Set a minimum height or width for the home div to prevent shifts */
+div.home {
+  min-height: 150px; /* Adjust the height as needed */
+}
+.contentCards,
+.mandiPrices,
+.whatsApp,
+.govtSchemes,
+.articles,
+.muchMore,
+.advertising-section,
+.download-app,
+.clients {
+  padding: 10px; /* Adjust as necessary */
+  box-sizing: border-box;
+}
+
+.weatherInfo {
+  min-height: 200px; /* Adjust based on content */
+}
+.cropInfo {
+  min-height: 200px; /* Adjust based on content */
+}

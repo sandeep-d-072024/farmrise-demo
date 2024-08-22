@@ -1,0 +1,171 @@
+.expert-article-container {
+    background-color: #fff;
+}
+
+.expert-article-header-mobile {
+    margin: 5% 4%;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333333;
+    display: flex;
+    align-items: center;
+    gap: 10%;
+}
+
+.expert-article-header-desktop {
+    margin: 2% 11% 5%;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 2;
+    color: #333333;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10%;
+}
+
+.back-btn-mobile {
+    display: flex;
+}
+
+.back-btn-desktop {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 100;
+    margin-bottom: 2%;
+}
+
+
+.expert-article-img-mobile {
+    width: auto;
+    margin: 1% 0 2% 0;
+}
+
+.expert-article-img-desktop {
+    width: auto;
+    margin: 1% 11% 2% 11%;
+}
+
+.expert-article-img-mobile img {
+    height: 257px;
+    width: 100%;
+}
+
+.expert-article-img-desktop img {
+    height: 614px;
+    width: 100%;
+}
+
+.article-data-container-mobile {
+    margin: 5% 5% 0 5%;
+    padding-bottom: 4%;
+}
+
+.article-data-container-desktop {
+    margin: 5% 11% 0 11%;
+    padding-bottom: 4%;
+}
+
+.expert-article-title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    padding-right: 2%;
+    margin-bottom: 2%;
+}
+
+.expert-article-info {
+    font-size: 12px;
+    color: #707070;
+    margin-bottom: 5%;
+}
+
+.expert-article-description {
+    font-size: 14px;
+    line-height: 22px;
+    margin-right: -8px;
+}
+
+.related-articles {
+    background-color: #fff;
+    margin: 1% 0;
+    padding: 2% 4%;
+}
+
+.related-articles-header {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6%;
+}
+
+.related-article-img {
+    margin-bottom: 4%;
+}
+
+.related-article-img img {
+    width: 100%;
+    border-radius: 6px;
+}
+
+.related-article-link1 {
+    font-size: 10px;
+    color: #3DAF2C;
+    font-weight: 600;
+    margin-bottom: 4%;
+}
+
+.related-article-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #707070;
+    margin-bottom: 2%;
+}
+
+.related-article-description {
+    font-size: 14px;
+    color: #707070;
+    margin-bottom: 4%;
+}
+
+.related-article-link2 {
+    padding: 2% 0;
+    color: #2EB363;
+    font-size: 14px;
+}
+
+.related-articles-desktop {
+    background-color: #fff;
+}
+
+.related-articles-header-desktop {
+    font-size: 30px;
+    font-weight: 600;
+    margin: 0 11%;
+}
+
+.related-articles-card-container {
+    display: flex;
+    flex-direction: row;
+    margin: 2% 11%;
+    gap: 9%
+}
+
+.related-article-card {
+    width: 46%;
+}
+
+.related-article-title-desktop {
+    font-size: 24px;
+    color: #333333;
+}
+
+.related-article-info {
+    font-size: 14px;
+    color: #333333;
+}
+
+.related-article-brief {
+    font-size: 17.5px;
+    color: #333333;
+}

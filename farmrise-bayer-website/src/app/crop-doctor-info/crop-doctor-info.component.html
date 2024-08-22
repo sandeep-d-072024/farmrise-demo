@@ -1,0 +1,24 @@
+
+<section class="crop-doctor-info-container">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap" rel="stylesheet">
+    <div class="crop-doctor-header">
+        <a href="" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1.5%;" routerLink="/">
+            <img src="../../assets/back-arrow-navigation-svgrepo-com.svg" alt="" height="24px" width="24px">
+            <label *ngIf="detectedDevice === 'desktop'" for="" style="font-size: 20px;">{{'translateStrings.back' | translate}}</label>
+        </a>
+        <span class="crop-doctor-header-text">{{'translateStrings.crop_doctor' | translate}}</span>
+    </div>
+    <div class="video-inframe">
+        <iframe [src]="videoSrc | safeUrl" width="100%" frameborder="0"></iframe>
+    </div>
+    <div class="crop-doctor-subtext">
+        <p>{{'translateStrings.crop_doctor' | translate}}</p>
+    </div>
+    <div class="crop-doctor-description">
+        <p>
+            {{'translateStrings.crop_doctor_description' | translate}}
+        </p>
+    </div>
+</section>
+<app-app-download></app-app-download>
+<app-footer *ngIf="detectedDevice === 'desktop'"></app-footer>

@@ -1,0 +1,241 @@
+<section *ngIf="!showErrorResponse">
+    <div>
+        <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+            <p style="color: white;">Please Wait..</p>
+        </ngx-spinner>
+        <div style="background-color: #E3E6E9;">
+            <!-------------- weather information card  -------------->
+            <div class="weatherCard">
+                <div class="weatherLocation">
+                    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap"
+                        rel="stylesheet">
+                        {{'translateStrings.today' | translate}}, {{city}}
+                </div>
+                <div class="weatherStatus">{{weatherName}}, {{apiResponseData.weatherDetailsResponseBO.rainfall != 0 ? apiResponseData.weatherDetailsResponseBO.rainfall + ('translateStrings.mm' | translate) : ('translateStrings.no_rainfall' | translate)}} </div>
+                <div class="temperature">
+                    <span class="text">{{apiResponseData.weatherDetailsResponseBO.currentTemp}}°</span>
+                    <img class="img" [src]="weatherIcon" alt="">
+                </div>
+                <div class="enableLocation">
+                    <span *ngIf="showEnableLocation">
+                        <u (click)="getLocation()">{{'translateStrings.enable_your_loaction' | translate}}</u>
+                    </span>
+                </div>
+            </div>
+            <!-----------------  end  ------------------------>
+            <!--------------  crop doctor card  -------------->
+            <div class="cropDoctorCard">
+                <div class="content">
+                    <div class="text-bold-16">{{'translateStrings.crop_doctor' | translate}}</div>
+                    <div class="description">
+                        {{'translateStrings.crop_doctor_submit_pictures' | translate}}
+                    </div>
+                    <a href="" routerLink="/crop-doctor-info" style="text-decoration: none;">
+                        <div class="button">{{'translateStrings.watch_how_it_works' | translate}}</div>
+                    </a>
+                </div>
+                <div class="image">
+                    <img style="width:72px; height:72px" src="../../assets/ic_crop_doctor.webp" alt="">
+                </div>
+            </div>
+            <!-----------------  end ------------------------>
+            
+            <!-- Mandi Pricing Feature Card -->
+            <div class="mandi-pricing-container">
+                <header>{{'translateStrings.know_nearby_mandi_prices' | translate}}</header>
+                <div class="crops-list">
+                    <div *ngFor="let crop of apiResponseData.commodityPricesMarketsDetailsBOList" [ngStyle]="{'border-bottom': apiResponseData.commodityPricesMarketsDetailsBOList.indexOf(crop) == 2 ? 'none': '1px solid lightgrey'}" class="crop-row" [ngClass]="{'crop-row-display': crop===null}" (click)="showCropMarketsPricing(crop)">
+                        <div class="crop-img" *ngIf="crop"><img src="{{crop.commodityLargeImageUrl}}" alt="" style="width: 14vw;
+                            height: 14vw;"></div>
+                        <div *ngIf="crop" class="crop-details">
+                            <span class="crop-name" *ngIf="crop">{{crop.commodityName}}</span>
+                            <span class="crop-quantity">{{crop.commodityPriceMarketBoList[0].quantity}}Kg</span>
+                            <span class="crop-pricing">
+                                ₹{{crop.commodityPriceMarketBoList[0].minPrice}}
+                                <img *ngIf="crop.commodityPriceMarketBoList[0].minPriceTrend === '+'" src="../../assets/ic_up_arrow.png" alt="&uparrow;"
+                                    style="height: 10px; width: 14px;">
+                                <img *ngIf="crop.commodityPriceMarketBoList[0].minPriceTrend === '-'" src="../../assets/ic_down_arrow.png" alt="&downarrow;"
+                                    style="height: 10px; width: 14px;">- ₹{{crop.commodityPriceMarketBoList[0].maxPrice}}
+                                <img *ngIf="crop.commodityPriceMarketBoList[0].maxPriceTrend === '+'" src="../../assets/ic_up_arrow.png" alt="&uparrow;"
+                                    style="height: 10px; width: 14px;">
+                                <img *ngIf="crop.commodityPriceMarketBoList[0].maxPriceTrend === '-'" src="../../assets/ic_down_arrow.png" alt="&downarrow;"
+                                    style="height: 10px; width: 14px;">
+                            </span>
+                        </div>
+                        <div *ngIf="crop" class="crop-view"><img src="../../assets/icons8-forward-90.png" alt=""></div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Mandi Pricing -->
+
+            <!--------------  whatsapp card  -------------->
+            <div *ngIf="showWhatsAppCard" class="whatsAppCard">
+                <div class="section-one">
+                    <div class="content">
+                        <div class="title">{{'translateStrings.want_to_see_more_crops' | translate}}</div>
+                        <div class="description">
+                            {{'translateStrings.search_for_preferred_crops' | translate}}
+                        </div>
+                    </div>
+                    <div class="image">
+                        <img style="width:72px; height:72px" src="../../assets/ic_whatsapp.webp" alt="">
+                    </div>
+                </div>
+                <div class="phoneNumber">
+                    <input placeholder="{{'translateStrings.enter_whatsapp_number' | translate}}" [(ngModel)]="userPhoneNumber" type="tel" pattern="[789][0-9]{9}" max="10"
+                    (keydown.enter)="subscribeWhatsapp()">
+                    <span *ngIf="isPhoneNumberInvalid" style="color: #E33E45; font-size: 14px;">{{'translateStrings.enter_10digit_phonenumber' | translate}}</span>
+                </div>
+            </div>
+            <div *ngIf="!showWhatsAppCard && !closeWhatsAppResponseCard" class="thankyou">
+                <img src="../../assets/ic_close_grey.svg" alt="" style="position: absolute; margin-left: 82%;" (click)="closeWhatsAppResponse()">
+                <p style="font-size: 18px;">{{'translateStrings.thank_you' | translate}}</p>
+                <p style="font-size: 14px;">{{'translateStrings.thank_you_get_insights' | translate}}</p>
+            </div>
+            <!-----------------  end  --------------------->
+
+            <!----------  verify bayer products  -------->
+            <div class="verifyBayerProductsCard">
+                <div class="verifyBayerProductsContent">
+                    <div class="text-bold-16">{{'translateStrings.verify_bayer_product' | translate}}</div>
+                    <div class="description">
+                        {{'translateStrings.scan_qr' | translate}}
+                    </div>
+                    <a href="" routerLink="/verify-product-info" style="text-decoration: none;">
+                        <div class="button">{{'translateStrings.watch_how_it_works' | translate}}</div>
+                    </a>
+                </div>
+                <div class="image">
+                    <img style="width:100%; height:auto" src="../../assets/ic_qr_code.png" alt="QR code">
+                </div>
+            </div>
+            <!-----------------  end  --------------------->
+
+            <!-- Government Schemes Card -->
+            <div class="govt-schemes-container">
+                <div class="govt-scheme-header">
+                    <div class="govt-scheme-header-img"><img src="../../assets/ic_goverment_schemes.svg"
+                            height="24px" width="24px" alt=""></div>
+                    <div class="govt-scheme-header-text">{{'translateStrings.govt_schemes' | translate}}</div>
+                    <div class="view-all" (click)="downloadApp()">{{'translateStrings.view_all' | translate}}</div>
+                </div>
+                <div class="govt-scheme-list">
+                    <div *ngFor="let scheme of apiResponseData.govtSchemesList "
+                        [ngClass]="apiResponseData.govtSchemesList.indexOf(scheme)!== apiResponseData.govtSchemesList.length-1 ? 'govt-scheme-row-border' : 'govt-scheme-row'"
+                        (click)="showGovtSchemeDetail(scheme)">
+                        <div class="govt-scheme-img"><img src="{{scheme.url}}" height="80px"
+                                width="124px" alt="" style="border-radius: 4px;"></div>
+                        <div class="govt-scheme-title">
+                            <p style="margin: 0;">{{scheme.schemeName}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end -->
+
+            <!-- campaign-carousel-banner -->
+            <app-campaign-carousel-banner></app-campaign-carousel-banner>
+
+            <!-- Expert Articles card -->
+            <div class="article-container">
+                <div class="article-header">
+                    <div class="article-header-img"><img src="../../assets/icon_article.png" height="24px" width="24px"
+                            alt=""></div>
+                    <div class="article-header-text">{{'translateStrings.expert_articles' | translate}}</div>
+                    <div class="view-all" (click)="downloadApp()">{{'translateStrings.view_all' | translate}}</div>
+                </div>
+                <div class="article-list">
+                    <div *ngFor="let article of apiResponseData.articleListResponseBO.articleList"
+                        [ngClass]="apiResponseData.articleListResponseBO.articleList.indexOf(article)!== apiResponseData.articleListResponseBO.articleList.length-1 ? 'article-row-border' : 'article-row'"
+                        (click)="showExpertArticle(article.articleId)" >
+                        <div class="article-img"><img src="{{article.url}}" height="80px" width="124px"
+                                alt="" style="border-radius: 4px;"></div> 
+                        <div class="article-detail">
+                            <div class="article-title" style="height: 60px;">
+                                <p>{{article.title}}</p>
+                            </div>
+                            <div class="article-info">
+                                <span>{{article.publishedDate | dateFormat}}</span>
+                                <span>{{article.likes}} {{'translateStrings.likes' | translate}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end -->
+            <!----------  And much more  ---------->
+            <div class="much-more">
+                <span class="text-bold-16">{{'translateStrings.and_much_more' | translate}}</span>
+                <div class="features">
+                    <div class="feature" (click)="openBottomSheet()">
+                        <img class="img" src="assets/ic_news.webp" alt="">
+                        <div class="text">{{'translateStrings.news' | translate}}</div>
+                    </div>
+                    <div class="feature" (click)="openBottomSheet()">
+                        <img class="img" src="assets/ic_events.png" alt="">
+                        <div class="text">{{'translateStrings.events' | translate}}</div>
+                    </div>
+                    <div class="feature" (click)="openBottomSheet()">
+                        <img class="img" src="assets/ic_advisory.webp" alt="">
+                        <div class="text">{{'translateStrings.advisory' | translate}}</div>
+                    </div>
+                </div>
+            </div>
+            <!-----------------  end  ------------------>
+            <!----------  app users information  ---------->
+            <div class="appUsersInformationCard">
+                <div class="informationText">
+                    <div class="numbersInformation">20+ {{'translateStrings.lacs' | translate}}</div>
+                    <div style="font-size: 14px;">{{'translateStrings.farmers_trust_app' | translate}}</div>
+                </div>
+                <div class="informationText">
+                    <div class="numbersInformation">1000*+</div>
+                    <div style="font-size: 14px;">{{'translateStrings.market_coverage' | translate}}</div>
+                </div>
+                <div class="informationTextCenter">
+                    <div class="numbersInformation">10+</div>
+                    <div style="font-size: 14px; align-self: center;">
+                        {{'translateStrings.indian_languages' | translate}}
+                    </div>
+                </div>
+            </div>
+            <!-----------------  end  ------------------>
+            <!----------  download our mobile app  ---------------->
+            <div class="downloadOurMobileAppCard" (click)="downloadApp()">
+                <div class="title">{{'translateStrings.download_our_mobile_app' | translate}}</div>
+                <div class="description">
+                    {{'translateStrings.farmrise_on_the_go' | translate}}
+                </div>
+                <div style="margin-top: 20px; display: flex; justify-content: center;">
+                    <img style="width: 225px; height: 67px; padding: 8px;" src="assets/ic_google_play.webp"
+                        alt="downloadApp">
+                </div>
+            </div>
+
+            <!-- Testimonials banner -->
+            <div class="testimonial-container">
+                <div class="testimonial-header">
+                    {{ 'translateStrings.our_happy_farmers_say_about_us' | translate}}
+                </div>
+                <c-carousel [interval]="2000" transition="slide">
+                    <c-carousel-inner>
+                        <c-carousel-item *ngFor="let banner of testimonials">
+                            <div class="testimonial-data">
+                                <img src="{{banner.image}}" alt="">
+                                <span class="header">{{ 'translateStrings.'+banner.title | translate}}</span>
+                                <span class="description">{{ 'translateStrings.'+banner.description | translate}}</span>
+                            </div>
+                            <div class="banner-indicators" style="text-align:center">
+                                <span *ngFor="let i of testimonials" class="dot" [ngClass]="{'dot-active' : i == banner}">
+                                </span>
+                            </div>
+                        </c-carousel-item>
+                    </c-carousel-inner>
+                </c-carousel> 
+            </div>
+            <!-- end -->
+        </div>
+    </div>
+</section>
+<app-error *ngIf="showErrorResponse"></app-error>
+<app-footer></app-footer>

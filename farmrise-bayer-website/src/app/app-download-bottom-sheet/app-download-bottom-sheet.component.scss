@@ -1,0 +1,264 @@
+:root {
+    --spin-language: 'en'
+  }
+  
+.app-download-container {
+    max-height: 600px !important;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    z-index: 9999 !important;
+    border-radius: 14px 14px 0 0;
+}
+
+.mat-bottom-sheet-container {
+    max-height: 600px !important;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    padding: 0;
+}
+
+.img {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 16px;
+    z-index: 9999;
+}
+
+.download-text {
+    position: absolute;
+    text-align: center;
+    color: #182855;
+    font-size: 16px;
+    top: 36px;
+    font-family: 'Noto Sans';
+    left: 16px;
+    right: 16px;
+}
+
+.download-info {
+    position: absolute;
+    text-align: center;
+    left: 16px;
+    right: 16px;
+    font-family: 'Noto Sans';
+    top: 64px;
+    color: #333333;
+    font-size: 22px;
+    line-height: 1.3;
+    white-space: pre-line
+}
+
+.other-free-features {
+    position: absolute;
+    text-align: center;
+    color: #172856;
+    font-size: 14px;
+    top: 400px;
+    font-family: 'Noto Sans';
+    left: 16px;
+    right: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.labelText {
+    padding: 0 8px;
+}
+
+.features {
+    position: absolute;
+    text-align: center;
+    color: #1F8A77;
+    font-size: 16px;
+    top: 440px;
+    font-family: 'Noto Sans';
+    left: 16px;
+    right: 16px;
+    line-height: 1.5;
+}
+
+.features:after {
+content: "";
+    white-space: pre-wrap;
+    animation: var(--spin-language) 5s linear infinite;
+}
+
+@keyframes en {
+0% {
+    content: "Crop prices from \A mandi across India";
+}
+
+40% {
+    content: "Pest, disease and \A fertiliser advisory";
+}
+
+70% {
+    content: "10 Day Weather Forecast";
+}
+
+100% {
+    content: "and many more...";
+}
+}
+
+@keyframes hi {
+0% {
+    content: "सम्पूर्ण भारत से फसल के मंडी भाव";
+}
+
+40% {
+    content: "कीट, रोग और उर्वरक सलाह";
+}
+
+70% {
+    content: "10 दिन का मौसम पूर्वानुमान";
+}
+
+100% {
+    content: "और भी बहुत कुछ...";
+}
+}
+
+@keyframes kn {
+0% {
+    content: "ಭಾರತದಾದ್ಯಂತದ ಮಂಡಿಯಿಂದ ಬೆಳೆಯ ಬೆಲೆಗಳು";
+}
+
+40% {
+    content: "ಕೀಟ, ರೋಗ, ಮತ್ತು ರಸಗೊಬ್ಬರ ಸಲಹೆ";
+}
+
+70% {
+    content: "10 ದಿನಗಳ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ ";
+}
+
+100% {
+    content: "ಮತ್ತು ಇನ್ನೂ ಅನೇಕ…";
+}
+}
+
+@keyframes mr {
+0% {
+    content: "भारतभरातील मंडईतील पिकांचे दर";
+}
+
+40% {
+    content: "किड, रोग व खते सल्ला";
+}
+
+70% {
+    content: "10 दिवस हवामान अंदाज";
+}
+
+100% {
+    content: "आणि अजून बरेच...";
+}
+}
+
+@keyframes te {
+0% {
+    content: "భారతదేశం అంతటా మార్కెట్ నుండి పంట ధరలు";
+}
+
+40% {
+    content: "తెగులు, వ్యాధులు మరియు ఎరువుల సలహా";
+}
+
+70% {
+    content: "10 రోజుల వాతావరణ సూచన";
+}
+
+100% {
+    content: "మరియు మరెన్నో...";
+}
+}
+
+@keyframes gu {
+0% {
+    content: "સમગ્ર ભારતમાંથી પાકના બજાર ભાવ";
+}
+
+40% {
+    content: "જંતુ, રોગ અને ખાતર સલાહ";
+}
+
+70% {
+    content: "10 દિવસની હવામાનની આગાહી";
+}
+
+100% {
+    content: "અને ઘણું બધું...";
+}
+}
+
+@keyframes or {
+0% {
+    content: "ସମଗ୍ର ଭାରତରେ ମାଣ୍ଡିରୁ ଫସଲ ମୂଲ୍ୟ।";
+}
+
+40% {
+    content: "କୀଟ, ରୋଗ ଏବଂ ସାର ପରାମର୍ଶଦାତା";
+}
+
+70% {
+    content: "10 ଦିନର ପାଣିପାଗ ପୂର୍ବାନୁମାନ।";
+}
+
+100% {
+    content: "ଏବଂ ଆହୁରି ଅନେକ...";
+}
+}
+
+@keyframes pa {
+0% {
+    content: "ਭਾਰਤ ਭਰ ਦੀਆਂ ਮੰਡੀਆਂ ਵਿਚਲੀਆਂ \A ਫ਼ਸਲਾਂ ਦੀਆਂ ਕੀਮਤਾਂ";
+}
+
+40% {
+    content: "ਕੀੜੇ, ਰੋਗ ਅਤੇ ਖਾਦ ਸੰਬੰਧੀ ਸਲਾਹ";
+}
+
+70% {
+    content: "10 ਦਿਨ ਦੇ ਮੌਸਮ ਦੀ ਭਵਿੱਖਬਾਣੀ";
+}
+
+100% {
+    content: "ਅਤੇ ਹੋਰ ਬਹੁਤ ਕੁਝ...";
+}
+}
+
+@keyframes bn {
+0% {
+    content: "সমগ্র ভারত জুড়ে মান্ডি \A থেকে প্রাপ্ত ফসলের দাম";
+}
+
+40% {
+    content: "কীটপতঙ্গ, রোগ ও সারের পরামর্শ";
+}
+
+70% {
+    content: "10 দিনের আবহাওয়ার পূর্বাভাস";
+}
+
+100% {
+    content: "এবং আরও অনেক কিছু...";
+}
+}
+
+.button-download {
+position: absolute;
+text-align: center;
+font-family: 'Noto Sans';
+font-weight: bold;
+background-color: #2eb363;
+top: 520px;
+padding: 16px;
+left: 16px;
+right: 16px;
+color: #ffffff;
+font-size: 14px;
+border-radius: 4px;
+}
